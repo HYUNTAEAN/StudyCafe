@@ -13,6 +13,7 @@ StudyCafe Kiosk Program
 2. JSP
 3. MyBatis
 4. SqlDeveloper
+5. Aquery Tool (code = 7754a034-f523-fe50-1060-21f3df0855b3)
 
 # Goal
 
