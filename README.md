@@ -1,4 +1,22 @@
-# StudyCafe (독서실 키오스크요)
+# StudyCafe - Spring - MVC
+StudyCafe Kiosk Program
 
-Mini Project - StudyCafe <br>
-자세한 설명은 생략합니다
+# Service
+- 로그인, 로그아웃, 회원가입 기능
+- 이용권 구매, 및 충전 기능
+- 입실(좌석 지정), 퇴실 기능
+- 회원정보 조회, 좌석이동 기능
+
+# Tech
+
+1. Spring Framework MVC Project (STS)
+2. JSP
+3. MyBatis
+4. SqlDeveloper
+
+# Goal
+
+1. MVC 프로젝트의 흐름 이해
+2. Ajax 처리를 이용한 비동기 처리 연습
+3. 데이터베이스 구조 연습
+4. Git을 이용한 Team Project를 경험
