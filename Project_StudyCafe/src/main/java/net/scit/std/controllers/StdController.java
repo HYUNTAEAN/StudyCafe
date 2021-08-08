@@ -9,7 +9,7 @@ import net.scit.std.service.StdService;
 @Controller
 public class StdController {
 	
-	@Autowired
+	//@Autowired
 	StdService service;
 	
 	@RequestMapping("")
