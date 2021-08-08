@@ -8,8 +8,8 @@ import net.scit.std.dao.StdRepository;
 @Service
 public class StdService {
 	
-	@Autowired
-	StdRepository repo;
+//	@Autowired
+//	StdRepository repo;
 	
 	public void example(){
 		
