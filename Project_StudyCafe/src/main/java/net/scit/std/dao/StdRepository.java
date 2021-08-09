@@ -7,10 +7,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StdRepository {
 	
-	@Autowired
-	SqlSession session;
+//	@Autowired
+//	SqlSession session;
 	
 	public void example(){
-		stdMapper mapper = session.getMapper(stdMapper.class);
 	}
 }
