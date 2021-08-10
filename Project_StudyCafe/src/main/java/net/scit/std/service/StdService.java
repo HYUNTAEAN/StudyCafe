@@ -11,6 +11,7 @@ public class StdService {
 	@Autowired
 	StdRepository repo;
 	
+	
 	public void example(){
 		
 	}
