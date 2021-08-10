@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 public class tradeVO {
 	private int tradenum;		// 거래 번호
 	private String userid;		// 유저 아이디
-	private int producttime;	// 상품 시간
-	private String tradetime;	// 거래 일시
-	private String expirytime;	// 만료 기간
+	private String tradetime;	// 거래 시각
+	private String lave_expiry;	// 잔여 유효 일시
+	private String productcode; // 상품 코드
+	private int lavetime; 		// 잔여 시간
 	
 }

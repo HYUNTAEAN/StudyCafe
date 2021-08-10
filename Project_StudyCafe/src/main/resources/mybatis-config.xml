@@ -5,6 +5,12 @@
 <configuration>
 	<typeAliases>
 		<!--  <typeAlias type="net.scit.std.vo." alias="" /> -->
+		<typeAlias type="net.scit.std.vo.memberVO" alias="member" />
+		<typeAlias type="net.scit.std.vo.productVO" alias="product" />
+		<typeAlias type="net.scit.std.vo.seatVO" alias="seat" />
+		<typeAlias type="net.scit.std.vo.tradeVO" alias="trade" />
+		<typeAlias type="net.scit.std.vo.useVO" alias="use" />
+		<typeAlias type="net.scit.std.vo.chargeVO" alias="charge" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="/mappers/stdMapper.xml" />
