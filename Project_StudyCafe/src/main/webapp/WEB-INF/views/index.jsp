@@ -9,7 +9,7 @@
 	table{
 		margin:auto; 
 		background-color : #1E6EC7;
-		 display: table;
+		display: table;
       	table-layout: fixed;
 	}
 	table, th, td, a {
@@ -69,8 +69,8 @@
 			<th><input type="password" id="userpwd" style="width:200px"></th>
 		</tr>
 		<tr>
-			<td><a href="#" class="button1">Join</td>
-			<td><a href="#" class="button2">Reset Password</td>
+			<td><a href="#" class="button1">Join</a></td>
+			<td><a href="#" class="button2">Reset Password</a></td>
 		</tr>
 		</table>
 	</form>

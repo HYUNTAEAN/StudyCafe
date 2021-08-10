@@ -10,7 +10,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public String main() {
 		
-		return "index";
+		return "joinForm";
 	}
 	
 }
