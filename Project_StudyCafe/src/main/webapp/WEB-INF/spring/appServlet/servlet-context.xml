@@ -24,5 +24,4 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="net.scit.std" />
-
 </beans:beans>
