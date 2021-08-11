@@ -14,4 +14,5 @@ public class availableVO {
 	private String laveexpiry;
 	private String lavetime;
 	
+	
 }
