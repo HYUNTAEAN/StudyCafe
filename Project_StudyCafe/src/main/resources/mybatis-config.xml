@@ -11,7 +11,7 @@
 		<typeAlias type="net.scit.std.vo.tradeVO" alias="trade" />
 		<typeAlias type="net.scit.std.vo.useVO" alias="use" />
 		<typeAlias type="net.scit.std.vo.chargeVO" alias="charge" />
-		<typeAlias type="net.scit.std.vo.availableVO" alias="available" />
+	<typeAlias type="net.scit.std.vo.availableVO" alias="available" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="/mappers/stdMapper.xml" />
