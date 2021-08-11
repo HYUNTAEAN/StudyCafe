@@ -23,6 +23,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="net.scit.std.controllers" />
-	<beans:bean class="net.scit.std.service.StdService"></beans:bean>
+	<context:component-scan base-package="net.scit.std" />
+
 </beans:beans>

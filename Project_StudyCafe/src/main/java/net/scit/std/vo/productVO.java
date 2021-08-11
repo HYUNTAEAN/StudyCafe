@@ -11,6 +11,7 @@ public class productVO {
 	private String productcode;	// 상품 코드
 	private int producttime;	// 상품 시간
 	private int price;			// 가격
-	private String expirytime;	// 만료 기간
+	private int expirytime;		// 상품 유효 기간
+	private String productname; // 상품명
 	
 }
