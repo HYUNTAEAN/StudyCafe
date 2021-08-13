@@ -5,4 +5,38 @@
 
 <mapper namespace="net.scit.std.dao.stdMapper">
 
+<select id="login" parameterType="member" resultType="member">
+SELECT
+	userid,
+	userpwd
+FROM
+	Cafe_Member
+WHERE
+	userid = #{userid}
+AND
+	userpwd = #{userpwd}
+</select>
+
+<insert id="join" parameterType="member">
+INSERT INTO
+	Cafe_Member
+(
+	userid, 
+	userpwd
+) VALUES (
+	#{userid},
+	#{userpwd}
+)
+</insert>
+
+<select id="joinChk" parameterType="String" resultType="member">
+SELECT
+	userid,
+	userpwd
+FROM
+	Cafe_member
+WHERE
+	userid = #{userid}
+</select>
+
 </mapper>

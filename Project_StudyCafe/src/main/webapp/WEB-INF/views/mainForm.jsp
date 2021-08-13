@@ -1,10 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>[ Login ]</title>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  
+<script>
+
+
+function loginChk(){
+	let userid = $("#userid").val();
+	let userpwd = $("#userpwd").val();
+	
+	if(userid.trim().length < 1){
+		alert("아이디 길이 오류");
+		return;
+	}
+	if(userpwd.trim().length < 1){
+		alert("비밀번호 길이 오류");
+		return;
+	}
+	
+	let myData = {"userid" : userid , "userpwd" : userpwd};
+
+	$.ajax({
+		url : 'login'
+		, method : 'POST'
+		, data : myData
+		, success : function(resp){
+			alert(JSON.stringify(resp));
+			window.location = '/std/';
+		}
+	});
+}
+
+</script>
+
 <style>
 	table{
 		margin:auto; 
@@ -43,7 +80,7 @@
 </head>
 <body>
 <div class="wrapper">
-	<form action="login">
+	<form id="login" action="login" method="POST">
 		<table width ="500">
 		<tr>
 			<td><b>STUDYCAFE</b></td>
@@ -57,20 +94,23 @@
 			<td colspan="2"> 
 			<a href="#">Check available seats</a></td>
 		</tr>
+		<c:if test="${sessionScope.loginId == null}">
 		<tr>
-			<th><input type="text" id="userid" style="width:200px"></th>
+			<th><input type="text" id="userid" name="userid" style="width:200px"></th>
 			<td rowspan="2">
-			<a href="#" class="button">ID/PW Login</a></td>
+			<a href="javascript:loginChk();" class="button">ID/PW Login</a></td>
 		</tr>
 		<tr>
-			<th><input type="password" id="userpwd" style="width:200px"></th>
+			<th><input type="password" id="userpwd" name="userpwd" style="width:200px"></th>
 		</tr>
 		<tr>
-			<td><a href="#" class="button1">Join</a></td>
+			<td><a href="join" class="button1">Join</a></td>
 			<td><a href="#" class="button2">Reset Password</a></td>
 		</tr>
+		</c:if>
 		</table>
 	</form>
+	<p>세션 정보 확인 : ${sessionScope.loginId}</p>
 </div>
 </body>
 </html> 
