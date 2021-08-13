@@ -100,6 +100,10 @@ input{
 	color: blue;
 	font-size : 0.75em;
 }
+#joinBtn {
+	padding: 15px 200px;
+	color: white;
+}
 /*
 .button {background-color: #1E6EC7;} 
 .button1 {background-color: #0386F2; width: 73%;}
@@ -118,7 +122,7 @@ input{
 				<th>SCIT41 Branch</th>
 			</tr>
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="javascript:joinMember();" id="HomeBtn">Home</a></th>
+				<th style="height: 50px; background-color: #68CC74;"><a href="#" id="HomeBtn">Home</a></th>
 				<th style="background-color: #213d62;">Join</th>
 			</tr>
 		</table>
@@ -146,11 +150,14 @@ input{
 					<td class="info"><input type="password" id="pwdcheck"></td>
 					<td class="reset"><a href="#" id="reset">reset</a></td>
 				</tr>
-
 			</table>
 			</form>
-		
 		</div>
 	</div>
+		<table width="500">
+			<tr>
+				<td style="height: 50px; background-color: #68CC74;"><a href="javascript:joinMember();" id="joinBtn"><b>JoinStudyCafe</b></a></td>
+			</tr>
+		</table>
 </body>
 </html> 
