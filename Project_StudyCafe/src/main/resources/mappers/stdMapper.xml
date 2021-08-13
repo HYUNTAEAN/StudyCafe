@@ -39,4 +39,35 @@ WHERE
 	userid = #{userid}
 </select>
 
+<select id="selectType" parameterType="String" resultType="product">
+SELECT
+	product_code as productcode,
+	product_time as producttime,
+	price,
+	expiry_time as expirytime,
+	product_name as productname
+FROM
+	Cafe_ProductInfo
+WHERE
+	product_code like #{productType} || '%'
+</select> 
+
+<select id="selectLave" parameterType="map" resultType="lave">
+SELECT
+	SUM(lave_time) as lavetime
+FROM
+	Cafe_TradeInfo
+WHERE
+	userid = #{userid} AND
+	product_code like #{productType} || '%'
+</select>
+
+<select id="research" parameterType="String" resultType="lave">
+SELECT
+	product_time as lavetime
+FROM
+	Cafe_ProductInfo
+WHERE
+	product_code = #{productcode}
+</select>
 </mapper>

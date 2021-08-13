@@ -1,11 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>[ purchaseForm ]</title>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  
+<script>
+$(function(){
+
+	$(".pretd").css("background-color","white");
+	$(".purclick").css("background-color","white");
+});
+function cal(resp){
+	$(".purclick").css("background-color","white");
+	$('#'+resp).css("background-color","red");
+	
+	let lvtime = $("#lvtime").val();
+	
+	let researchData = {"productcode" : resp , "lvtime" : lvtime};
+	
+	$.ajax({
+		url : 'research'
+		, method : 'GET'
+		, data : researchData
+		, success : function(resp){
+			$('#chargetime').html(resp['result'] + " hours");
+			$('#plustime').html(resp['lvtime'] + " hours");
+		}
+	});
+
+};
+</script>
 <style>
+.bgon{
+	background-color : red;
+}
 table{
 	margin:auto; 
 	display: table;
@@ -21,7 +56,6 @@ th {
 }
 
 td {
-	background-color: white;
 	border: #e3ddd1 solid 1px;
 	padding: 5px;
 }
@@ -71,27 +105,28 @@ a {
 				<th>SCIT41 Branch</th>
 			</tr>
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="#" id="HomeBtn">Home</a></th>
+				<th style="height: 50px; background-color: #68CC74;"><a href="/std/" id="HomeBtn">Home</a></th>
 				<th style="background-color: #213d62;">Purchase of Products</th>
 			</tr>
 		</table>
 		<div class="context" style="padding-bottom: 0;">
 			<table width="460">
-				<tr>
+				<tr class="pretd">
 					<td class="division" style="background-color: #ededed;">Division</td>
 					<td class="time" style="background-color: #ededed;">Time</td>
 				</tr>
-				<tr>
+				<tr class="pretd">
 					<td class="division">Time package remaining time</td>
-					<td class="time">0 hours</td>
+					<td class="time">${lavetime} hours<input type="hidden" id="lvtime" value="${lavetime}"></td>
+					
 				</tr>
-				<tr>
+				<tr class="pretd">
 					<td class="division">Charging time</td>
-					<td class="time">0 hours</td>
+					<td class="time" id="chargetime">0 hours</td>
 				</tr>
-				<tr>
+				<tr class="pretd">
 					<td class="division">Total time after charging</td>
-					<td class="time">0 hours</td>
+					<td class="time" id="plustime">0 hours</td>
 				</tr>
 			</table>
 		</div>
@@ -102,21 +137,13 @@ a {
 					<td style="background-color: #ededed; text-align: right;">Effective days</td>
 					<td style="background-color: #ededed; text-align: right;">Price</td>
 				</tr>
-				<tr>
-					<td class="division">30 hour package</td>
-					<td class="time">30 days</td>
-					<td class="time">49,000 won</td>
+			<c:forEach var="product" items="${list}">
+				<tr class="purclick" id="${product.productcode}" onclick="javascript:cal('${product.productcode}');">
+					<td class="division">${product.productname}</td>
+					<td class="time">${product.expirytime}</td>
+					<td class="time">${product.price} WON</td>
 				</tr>
-				<tr>
-					<td class="division">50 hour package</td>
-					<td class="time">50 days</td>
-					<td class="time">70,000 won</td>
-				</tr>
-				<tr>
-					<td class="division">100 hour package</td>
-					<td class="time">100 days</td>
-					<td class="time">130,000 won</td>
-				</tr>
+			</c:forEach>
 			</table>
 		</div>
 		<table width="500">

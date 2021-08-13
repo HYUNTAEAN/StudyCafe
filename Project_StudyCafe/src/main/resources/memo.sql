@@ -18,8 +18,6 @@ CREATE TABLE Cafe_Member
 (
     userid varchar2(30) primary key, 		-- 사용자 아이디
     userpwd varchar2(30) not null, 			-- 사용자 비밀번호
-    charging_time number default 0, 		-- 충전 시간
-    charging_day number default 0 			-- 충전 일수
 );
 
 CREATE TABLE Cafe_SeatInfo
@@ -32,36 +30,47 @@ CREATE TABLE Cafe_ProductInfo
 	product_code varchar2(30) primary key, 	-- 상품 코드
 	product_time number not null, 			-- 상품 시간
 	price number not null, 					-- 상품 가격
-	expiry_time date not null 				-- 상품 유효 일시
+	expiry_time number not null 				-- 상품 유효 일시
+	product_name varchar(70)				-- 상품 이름
 );
 
 CREATE TABLE Cafe_TradeInfo
 (
 	trade_num number primary key,												-- 거래 번호
 	userid varchar2(30) not null references Cafe_Member(userid),				-- 사용자 아이디
-	product_time number not null references Cafe_ProductInfo(product_time),		-- 상품 시간
 	trade_time date default sysdate,											-- 거래 시각
-	expiry_time date not null references Cafe_ProductInfo(expiry_time)			-- 상품 유효 일시										-- 퇴실 예정 시간
+	lave_expiry date												-- 잔여 유효 일시	
+	product_code varchar2(30) references Cafe_ProductInfo(product_code)			-- 상품 코드
+	lave_time number															-- 잔여 시간
 );
 
+CREATE TABLE Cafe_ChargeInfo
+(
+	charge_num number primary key,												--충전 번호
+	userid varchar2(30) not null,												-- 사용자 아이디
+	lave_expiry date,															-- 잔여 유효 일시
+	charge_time number															-- 충전 시간
+);
 CREATE TABLE Cafe_UseInfo
 (
-	use_num number primary key,
-	userid varchar2(30) not null references Cafe_Member(userid),				-- 이용 번호
-	charging_time number references Cafe_Member(charging_time),					-- 충전시간
-	charging_day number references Cafe_Member(charging_day),					-- 충전일수
-	start_time date default sysdate,											-- 입실 시각
+	use_num number primary key,													-- 이용 번호
+	userid varchar2(30) not null references Cafe_Member(userid),				-- 사용자 아이디
+	start_time date not null default sysdate,									-- 입실 시각
 	end_time date not null,														-- 퇴실 예정 시각
-	seat_num number not null references Cafe_SeatInfo(seat_num)						-- 좌석 번호
+	seat_num number not null references Cafe_SeatInfo(seat_num)					-- 좌석 번호
 );
 
 CREATE SEQUENCE trade_num_seq;	-- 거래 번호 시퀀스
 CREATE SEQUENCE use_num_seq;	-- 이용 번호 시퀀스
+CREATE SEQUENCE charge_num_seq;	-- 충전 번호 시퀀스
 
 
 DROP TABLE Cafe_Member;
 DROP TABLE Cafe_SeatInfo;
+DROP TABLE Cafe_ProductInfo;
 DROP TABLE Cafe_TradeInfo;
+DROP TABLE Cafe_ChargeInfo;
 DROP TABLE Cafe_UseInfo;
 DROP SEQUENCE trade_num_seq;
 DROP SEQUENCE use_num_seq;
+DROP SEQUENCE charge_num_seq;
