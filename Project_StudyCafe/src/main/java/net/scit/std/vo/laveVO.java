@@ -9,4 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class laveVO {
 	private int lavetime;
+	private int expirytime;
+	private int price;
 }

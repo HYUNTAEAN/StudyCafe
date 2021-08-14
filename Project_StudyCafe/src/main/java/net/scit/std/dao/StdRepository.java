@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import net.scit.std.vo.laveVO;
 import net.scit.std.vo.memberVO;
 import net.scit.std.vo.productVO;
+import net.scit.std.vo.tradeVO;
 
 @Repository
 public class StdRepository {
@@ -59,7 +60,6 @@ public class StdRepository {
 		
 		laveVO lave = mapper.selectLave(map);
 
-		System.out.println("는:" + lave);
 		return lave;
 	}
 
@@ -70,5 +70,23 @@ public class StdRepository {
 		laveVO lave = mapper.research(productcode);
 		
 		return lave;
+	}
+
+
+	public productVO selectProductOne(String productcode) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		productVO product = mapper.selectProductOne(productcode);
+		
+		return product;
+	}
+
+
+	public int insertTrade(tradeVO trade) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		int result = mapper.insertTrade(trade);
+		
+		return result;
 	}
 }
