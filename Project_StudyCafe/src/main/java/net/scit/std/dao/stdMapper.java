@@ -6,6 +6,7 @@ import java.util.Map;
 import net.scit.std.vo.laveVO;
 import net.scit.std.vo.memberVO;
 import net.scit.std.vo.productVO;
+import net.scit.std.vo.tradeVO;
 
 public interface stdMapper {
 
@@ -20,5 +21,9 @@ public interface stdMapper {
 	public laveVO selectLave(Map<String, String> map);
 
 	public laveVO research(String productcode);
+
+	public productVO selectProductOne(String productcode);
+
+	public int insertTrade(tradeVO trade);
 
 }

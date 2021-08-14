@@ -13,29 +13,66 @@
   
 <script>
 $(function(){
-
+	let type = $("#typechk").val();
+	let firstlave = $("#lvtime").val();
+	if(type == 'C'){
+		$('#firstlv').html(firstlave + " days");
+		$('#chargetime').html("0 days");
+		$('#plustime').html("0 days");
+	}
 	$(".pretd").css("background-color","white");
 	$(".purclick").css("background-color","white");
 });
+
 function cal(resp){
 	$(".purclick").css("background-color","white");
 	$('#'+resp).css("background-color","red");
+	$('#cod').val(resp);
 	
 	let lvtime = $("#lvtime").val();
-	
 	let researchData = {"productcode" : resp , "lvtime" : lvtime};
+
 	
 	$.ajax({
 		url : 'research'
 		, method : 'GET'
 		, data : researchData
 		, success : function(resp){
+			let type = $("#typechk").val();
+			$('#exp').val(resp['expiry']);
+			$('#pri').val(resp['price']);
+			
+			if(type == 'C'){
+				$('#chargetime').html(resp['result'] + " days");
+				$('#plustime').html(resp['lvtime'] + " days");
+			} else {
 			$('#chargetime').html(resp['result'] + " hours");
 			$('#plustime').html(resp['lvtime'] + " hours");
+			}
 		}
 	});
 
 };
+
+function payment(){
+
+	let lavetime = $('#lvtime').val();
+	let charge = $('#chargetime').html();
+	let plus = $('#plustime').html();
+	let expiry = $('#expiry').html();
+	let chargetime = charge.split(' ')[0];
+	let plustime = plus.split(' ')[0];
+	let exp = $('#exp').val();
+	let pri = $('#pri').val();
+	let cod = $('#cod').val();
+	
+	if(chargetime == '0'){
+		alert("상품을 선택해");
+		return;
+	}
+	let type = $("#typechk").val();
+	location.href='payment?lavetime='+lavetime+'&chargetime='+chargetime+'&plustime='+plustime+'&type='+type+'&expiry='+exp+'&price='+pri+'&cod='+cod;
+}
 </script>
 <style>
 .bgon{
@@ -112,12 +149,12 @@ a {
 		<div class="context" style="padding-bottom: 0;">
 			<table width="460">
 				<tr class="pretd">
-					<td class="division" style="background-color: #ededed;">Division</td>
+					<td class="division" style="background-color: #ededed;">Division<input type="hidden" id="typechk" value="${productType}"></td>
 					<td class="time" style="background-color: #ededed;">Time</td>
 				</tr>
 				<tr class="pretd">
-					<td class="division">Time package remaining time</td>
-					<td class="time">${lavetime} hours<input type="hidden" id="lvtime" value="${lavetime}"></td>
+					<td class="division">Time package remaining time<input type="hidden" id="lvtime" value="${lavetime}"></td>
+					<td class="time" id="firstlv">${lavetime} hours</td>
 					
 				</tr>
 				<tr class="pretd">
@@ -133,9 +170,9 @@ a {
 		<div class="context">
 			<table width="460">
 				<tr>
-					<td style="background-color: #ededed;" class="division">Product name</td>
-					<td style="background-color: #ededed; text-align: right;">Effective days</td>
-					<td style="background-color: #ededed; text-align: right;">Price</td>
+					<td style="background-color: #ededed;" class="division">Product name<input type="hidden" id="cod" value=""></td>
+					<td style="background-color: #ededed; text-align: right;">Effective days<input type="hidden" id="exp" value=""></td>
+					<td style="background-color: #ededed; text-align: right;">Price<input type="hidden" id="pri" value=""></td>
 				</tr>
 			<c:forEach var="product" items="${list}">
 				<tr class="purclick" id="${product.productcode}" onclick="javascript:cal('${product.productcode}');">
@@ -148,7 +185,7 @@ a {
 		</div>
 		<table width="500">
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="#" id="PaymentBtn">Payment</a></th>
+				<th style="height: 50px; background-color: #68CC74;"><a href="javascript:payment();" id="PaymentBtn">Payment</a></th>
 			</tr>
 		</table>
 	</div>

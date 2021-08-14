@@ -1,6 +1,10 @@
 package net.scit.std.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,7 @@ import net.scit.std.dao.StdRepository;
 import net.scit.std.vo.laveVO;
 import net.scit.std.vo.memberVO;
 import net.scit.std.vo.productVO;
+import net.scit.std.vo.tradeVO;
 
 @Service
 public class StdService {
@@ -66,15 +71,50 @@ public class StdService {
 	}
 
 
-	public int research(String productcode) {
+	public laveVO research(String productcode) {
 		laveVO lave = repo.research(productcode);
 		
-		int result = 0;
-		if(lave != null){
-			result += lave.getLavetime();
-		}
+		
+		
+		return lave;
+	}
+
+
+	public String monthCal(int nMonth) {
+		System.out.println(nMonth);
+		String[] monthText = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		
+		String eMonth = monthText[nMonth-1];
+		return eMonth;
+	}
+
+
+	public int insertTrade(tradeVO trade) {
+		String productcode = trade.getProductcode();
+		productVO product = selectProductOne(productcode);
+		int expiry = product.getExpirytime();
+		int producttime = product.getProducttime();
+		
+		Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		calendar.add(Calendar.DAY_OF_MONTH, expiry);
+		
+		SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd");
+		String laveexpiry = fm.format(calendar.getTime());
+		trade.setLaveexpiry(laveexpiry);
+		trade.setLavetime(producttime);
+		
+		int result = repo.insertTrade(trade);
 		
 		return result;
 	}
+
+
+	private productVO selectProductOne(String productcode) {
+		productVO product = repo.selectProductOne(productcode);
+		
+		return product;
+	}
+
+
 	
 }

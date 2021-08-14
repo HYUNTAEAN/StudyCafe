@@ -64,10 +64,46 @@ WHERE
 
 <select id="research" parameterType="String" resultType="lave">
 SELECT
-	product_time as lavetime
+	product_time as lavetime,
+	expiry_time as expirytime,
+	price
 FROM
 	Cafe_ProductInfo
 WHERE
 	product_code = #{productcode}
 </select>
+
+<select id="selectProductOne" parameterType="String" resultType="product">
+SELECT
+	product_code as productcode,
+	product_time as producttime,
+	price,
+	expiry_time as expirytime,
+	product_name as productname
+FROM
+	Cafe_ProductInfo
+WHERE
+	product_code = #{productcode}
+</select>
+
+<insert id="insertTrade" parameterType="trade">
+INSERT INTO
+	Cafe_TradeInfo
+(
+	trade_num, 
+	userid, 
+	trade_time, 
+	lave_expiry, 
+	product_code, 
+	lave_time
+) VALUES (
+	trade_num_seq.nextval,
+	#{userid},
+	SYSDATE,
+	#{laveexpiry},
+	#{productcode},
+	#{lavetime}
+)
+</insert>
+
 </mapper>
