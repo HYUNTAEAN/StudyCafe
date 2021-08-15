@@ -199,7 +199,7 @@ function loginChk(){
 				</tr>
 				<tr>
 					<td class="firsttd" id="posttd">Charge 정액권</td>
-					<td class="choose" colspan="3" id="posttd"><a href="#">Charge TimePackage</a></td>
+					<td class="choose" colspan="3" id="posttd"><a href="charge">Charge TimePackage</a></td>
 					<td class="choose" colspan="3" id="posttd"><a href="#">Charge 기간권</a></td>
 				</tr>
 				<tr>

@@ -158,4 +158,9 @@ public class StdController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping("/charge")
+	public String chargeForm() {
+		return "chargeForm";
+	}
 }
