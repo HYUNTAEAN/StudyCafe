@@ -42,6 +42,12 @@ public class StdController {
 		return "Wassup";
 	}
 	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("loginId");
+		return "redirect:/";
+	}
+	
 	@RequestMapping("/join")
 	public String join(){
 		return "joinForm";
