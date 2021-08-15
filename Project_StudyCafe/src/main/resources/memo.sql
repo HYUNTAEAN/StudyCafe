@@ -74,3 +74,218 @@ DROP TABLE Cafe_UseInfo;
 DROP SEQUENCE trade_num_seq;
 DROP SEQUENCE use_num_seq;
 DROP SEQUENCE charge_num_seq;
+
+rollback;
+commit;
+delete from Cafe_ProductInfo;
+delete from Cafe_TradeInfo;
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'A001'
+        ,2
+        ,3500
+        ,1
+        ,'2hours Ticket'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'A002'
+        ,3
+        ,5000
+        ,1
+        ,'3hours Ticket'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'A003'
+        ,4
+        ,6000
+        ,1
+        ,'4hours Ticket'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'A004'
+        ,6
+        ,8000
+        ,1
+        ,'6hours Ticket'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'A005'
+        ,8
+        ,9500
+        ,1
+        ,'8hours Ticket'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'A006'
+        ,10
+        ,11000
+        ,1
+        ,'10hours Ticket'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'A007'
+        ,12
+        ,12000
+        ,1
+        ,'12hours Ticket'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'A008'
+        ,15
+        ,14000
+        ,1
+        ,'15hours Ticket'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'A009'
+        ,24
+        ,20000
+        ,1
+        ,'24hours Ticket'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'B001'
+        ,30
+        ,49000
+        ,30
+        ,'30hours Packege'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'B002'
+        ,50
+        ,70000
+        ,50
+        ,'50hours Packege'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'B003'
+        ,100
+        ,130000
+        ,100
+        ,'100hours Packege'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'C001'
+        ,7
+        ,49000
+        ,7
+        ,'1Week Free Pass'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'C002'
+        ,14
+        ,85000
+        ,14
+        ,'2Weeks Free Pass'
+    );
+insert into
+    Cafe_ProductInfo(
+        product_code
+        ,product_time
+        ,price
+        ,expiry_time
+        ,product_name
+    )values(
+        'C003'
+        ,28
+        ,139000
+        ,28
+        ,'4Weeks Free Pass'
+    );
