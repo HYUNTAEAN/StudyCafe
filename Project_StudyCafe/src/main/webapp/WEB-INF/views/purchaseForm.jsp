@@ -96,13 +96,13 @@ $(function () {
 });
 $(function () {
 	$(".highlight").on("mouseover", function () {
-		$(this).css("background-color", "rgba(104, 204, 116, 0.8)");
+		$(this).css("background-color", "#62C15B");
 	});
 	$(".highlight").on("mouseout", function () {
 		$(this).css("background-color", "rgba(104, 204, 116, 1)");
 	});
 	$(".highlight").on("mousedown", function () {
-		$(this).css("background-color", "#62C15B");
+		$(this).css("background-color", "rgba(104, 204, 116, 0.8)");
 	});
 });
 </script>
