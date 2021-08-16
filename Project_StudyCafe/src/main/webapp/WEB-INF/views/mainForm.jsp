@@ -155,7 +155,7 @@ $(function () {
 		width: 120px;
 	}
 	.lasttd{
-		background-color: #24703f;
+		background-color: #2d7d4a;
 	}
 	.change{
 		background-color: #24703f;
