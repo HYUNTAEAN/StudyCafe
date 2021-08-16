@@ -9,4 +9,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class seatVO {
 	private int seatnum;	// 좌석 번호
+	private String sectionnum;
 }

@@ -7,10 +7,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import net.scit.std.vo.chargeVO;
 import net.scit.std.vo.laveVO;
 import net.scit.std.vo.memberVO;
 import net.scit.std.vo.productVO;
+import net.scit.std.vo.seatVO;
 import net.scit.std.vo.tradeVO;
+import net.scit.std.vo.upChargeVO;
+import net.scit.std.vo.useVO;
 
 @Repository
 public class StdRepository {
@@ -88,5 +92,104 @@ public class StdRepository {
 		int result = mapper.insertTrade(trade);
 		
 		return result;
+	}
+
+
+	public List<tradeVO> selectTradeList(Map<String, String> map) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		List<tradeVO> list = mapper.selectTradeList(map);
+		
+		return list;
+	}
+
+
+	public laveVO selectChargeOne(String userid) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		laveVO lave = mapper.selectChargeOne(userid);
+		
+		return lave;
+	}
+
+
+	public tradeVO selectTradeOne(int tradenum) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		tradeVO trade = mapper.selectTradeOne(tradenum);
+		
+		return trade;
+	}
+
+
+	public int insertCharge(chargeVO charge) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		int result = mapper.insertCharge(charge);
+		
+		return result;
+	}
+
+
+	public tradeVO selectTradeDay(Map<String, String> map) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		tradeVO trade = mapper.selectTradeDay(map);
+		
+		return trade;
+	}
+
+
+	public int updateTrade(upChargeVO upCharge) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		int result = mapper.updateTrade(upCharge);
+		
+		return result;
+	}
+
+
+	public List<chargeVO> selectChargeInfo(Map<String, String> map) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		List<chargeVO> charge = mapper.selectChargeInfo(map);
+		
+		return charge;
+	}
+
+
+	public List<seatVO> selectSeatList() {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		List<seatVO> list = mapper.selectSeatList();
+		
+		return list;
+	}
+
+
+	public useVO selectSeatOne(int seatnum) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		useVO use = mapper.selectSeatOne(seatnum);
+		
+		return use;
+	}
+
+
+	public int insertUse(useVO use) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		int result = mapper.insertUse(use);
+		
+		return result;
+	}
+
+
+	public chargeVO selectChargeTime(Map<String, String> map) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		chargeVO list = mapper.selectChargeTime(map);
+		
+		return list;
 	}
 }

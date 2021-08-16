@@ -95,15 +95,168 @@ INSERT INTO
 	trade_time, 
 	lave_expiry, 
 	product_code, 
-	lave_time
+	lave_time,
+	product_name
 ) VALUES (
 	trade_num_seq.nextval,
 	#{userid},
 	SYSDATE,
 	#{laveexpiry},
 	#{productcode},
-	#{lavetime}
+	#{lavetime},
+	#{productname}
 )
 </insert>
 
+<select id="selectTradeList" parameterType="map" resultType="trade">
+SELECT
+	trade_num as tradenum,
+	userid,
+	to_char(trade_time, 'YYYY-MM-DD HH24:MI') as tradetime,
+	to_char(lave_expiry, 'YYYY-MM-DD HH24:MI') as laveexpiry,
+	product_code as productcode,
+	lave_time as lavetime,
+	product_name as productname
+FROM
+	Cafe_TradeInfo
+WHERE
+	userid = #{userid} AND
+	product_code LIKE #{productType} || '%' AND
+	lave_expiry <![CDATA[>]]> SYSDATE
+</select>
+
+<select id="selectChargeOne" parameterType="String" resultType="lave">
+SELECT
+	SUM(charge_time) as lavetime
+FROM	
+	Cafe_ChargeInfo
+WHERE
+	userid = #{userid} AND
+	lave_expiry > SYSDATE
+</select>
+
+<select id="selectTradeOne" parameterType="int" resultType="trade">
+SELECT
+	trade_num as tradenum,
+	userid,
+	to_char(trade_time, 'YYYY-MM-DD HH24:MI') as tradetime,
+	to_char(lave_expiry, 'YYYY-MM-DD HH24:MI') as laveexpiry,
+	product_code as productcode,
+	lave_time as lavetime,
+	product_name productname
+FROM
+	Cafe_TradeInfo
+WHERE
+	trade_num = #{tradenum}
+</select>
+
+<insert id="insertCharge" parameterType="charge">
+INSERT INTO
+	Cafe_ChargeInfo
+(
+	charge_num, 
+	userid, 
+	lave_expiry, 
+	charge_time,
+	product_code,
+	charge_date
+) VALUES (
+	charge_num_seq.nextval,
+	#{userid},
+	#{laveexpiry},
+	#{chargetime},
+	#{productcode},
+	SYSDATE
+)
+</insert>
+
+<select id="selectTradeDay" parameterType="map" resultType="trade">
+SELECT
+	trade_num as tradenum,
+	userid,
+	to_char(trade_time, 'YYYY-MM-DD HH24:MI') as tradetime,
+	to_char(lave_expiry, 'YYYY-MM-DD HH24:MI') as laveexpiry,
+	product_code as productcode,
+	lave_time as lavetime,
+	product_name productname
+FROM
+	Cafe_TradeInfo
+WHERE
+	userid = #{userid} AND
+	product_code = #{productcode}
+</select>
+
+<update id="updateTrade" parameterType="upCharge">
+UPDATE
+	Cafe_TradeInfo
+SET
+	lave_time = #{chargetime}
+WHERE
+	trade_num = #{tradenum} AND
+	userid = #{userid}
+</update>
+
+<select id="selectChargeInfo" parameterType="map" resultType="charge">
+SELECT
+	charge_num as chargenum,
+	userid,
+	lave_expiry as laveexpiry,
+	charge_time as chargetime,
+	product_code as productcode,
+	to_char(charge_date, 'YYYY-MM-DD HH24:MI') as charge_date
+FROM
+	Cafe_ChargeInfo
+WHERE
+	userid = #{userid} AND
+	product_code LIKE #{productType} || '%'
+</select>
+
+<select id="selectSeatList" resultType="seat">
+SELECT
+	seat_num as seatnum,
+	section_num as sectionnum
+FROM
+	Cafe_SeatInfo
+</select>
+
+<select id="selectSeatOne" parameterType="int" resultType="use">
+SELECT
+	use_num as usenum,
+	userid,
+	to_char(start_time, 'YYYY-MM-DD HH24:MI') as starttime,
+	to_char(end_time, 'YYYY-MM-DD HH24:MI') as endtime,
+	seat_num as seatnum
+FROM
+	Cafe_UseInfo
+WHERE
+	seat_num = #{seatnum}
+</select>
+
+<insert id="insertUse" parameterType="use">
+INSERT INTO
+	Cafe_UseInfo
+(
+	use_num, 
+	userid, 
+	start_time, 
+	end_time, 
+	seat_num
+) VALUES (
+	use_num_seq.nextval,
+	#{userid},
+	SYSDATE,
+	#{endtime},
+	#{seatnum}
+)
+</insert>
+
+<select id="selectChargeTime" parameterType="map" resultType="charge">
+SELECT
+	SUM(charge_time) as chargetime
+FROM
+	Cafe_ChargeInfo
+WHERE
+	userid = #{userid} AND
+	product_code LIKE #{productType} || '%'
+</select>
 </mapper>
