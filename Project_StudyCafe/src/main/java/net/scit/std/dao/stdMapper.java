@@ -32,7 +32,7 @@ public interface stdMapper {
 
 	public List<tradeVO> selectTradeList(Map<String, String> map);
 
-	public laveVO selectChargeOne(String userid);
+	public laveVO selectChargeOne(Map<String, String> map);
 
 	public tradeVO selectTradeOne(int tradenum);
 
@@ -51,5 +51,11 @@ public interface stdMapper {
 	public int insertUse(useVO use);
 
 	public chargeVO selectChargeTime(Map<String, String> map);
+
+	public int deleteUse(String userid);
+
+	public useVO selectUse(String userid);
+
+	public int paybackTime(upChargeVO payback);
 
 }

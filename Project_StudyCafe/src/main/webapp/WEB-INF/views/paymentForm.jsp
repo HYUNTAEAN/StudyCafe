@@ -135,9 +135,14 @@ p {
 
 				<tr>
 					<td class="division" width="30%">Until when</td>
+				<c:if test="${type == 'A' }">
+					<td class="time">TODAY</td>
+				</c:if>
+				<c:if test="${type != 'A'}"	>
 					<td class="time">Until ${nYear}-${eMonth}-<c:if test="${nDay<10}">0${nDay}</c:if><c:if test="${nDay>9}">${nDay}</c:if>
 						<c:if test="${nHour<10}">0${nHour}</c:if><c:if test="${nHour>9}">${nHour}</c:if>:<c:if test="${nMinu<10}">0${nMinu}</c:if><c:if test="${nMinu>9}">${nMinu}</c:if>
 						<c:if test="${nHour<12}"> AM</c:if><c:if test="${nHour>11}"> PM</c:if></td>
+				</c:if>	
 					</tr>
 				<tr>
 					<td class="division">Payment Amount</td>

@@ -177,7 +177,7 @@ a {
 			<c:forEach var="product" items="${list}">
 				<tr class="purclick" id="${product.productcode}" onclick="javascript:cal('${product.productcode}');">
 					<td class="division">${product.productname}</td>
-					<td class="time">${product.expirytime}</td>
+					<td class="time">${product.expirytime} days</td>
 					<td class="time">${product.price} WON</td>
 				</tr>
 			</c:forEach>

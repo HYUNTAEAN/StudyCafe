@@ -38,6 +38,46 @@ function loginChk(){
 	});
 }
 
+function use(type){
+	
+	let myData = {"productType" : type};
+	
+	$.ajax({
+		url : "useChk"
+		, method : 'GET'
+		, data : myData
+		, success : function(resp){
+			if(resp == "NoCharged"){
+				alert("충전 정보 없음");
+				return;
+			}
+			if(resp == "Used"){
+				alert("입실 정보 존재");
+				return;
+			}
+			if(resp == "SUCCESS"){
+				location.href="use?productType="+type;
+			}
+		}
+	
+	});
+}
+
+function seatChange(){
+	
+	$.ajax({
+		url : 'seatChange'
+		, method : 'GET'
+		success : function(resp){
+			if(resp == "FAIL"){
+				alert("입실 정보가 없습니다");
+				location.href="/std/";
+			} else {
+				location.href="";///////////////고민
+			}
+		}
+	});
+}
 </script>
 
 <style>
@@ -194,8 +234,8 @@ function loginChk(){
 				</tr>
 				<tr>
 					<td class="firsttd" id="posttd">Use 정액권</td>
-					<td class="choose" colspan="3" id="posttd"><a href="use?productType=B">Choose seat as TimePackage</a></td>
-					<td class="choose" colspan="3" id="posttd"><a href="use?productType=C">Choose seat as 기간권</a></td>
+					<td class="choose" colspan="3" id="posttd"><a href="javascript:use('B')">Choose seat as TimePackage</a></td>
+					<td class="choose" colspan="3" id="posttd"><a href="javascript:use('C')">Choose seat as 기간권</a></td>
 				</tr>
 				<tr>
 					<td class="firsttd" id="posttd">Charge 정액권</td>
@@ -205,14 +245,14 @@ function loginChk(){
 				<tr>
 					<td class="lasttd" id="posttd">Additional Function</td>
 					<td class="change" colspan="2" id="posttd"><a href="#">Check User Information</a></td>
-					<td class="change" colspan="2" id="posttd"><a href="#">Change Seat</a></td>
+					<td class="change" colspan="2" id="posttd"><a href="javascript:seatChange();">Change Seat</a></td>
 					<td class="change" colspan="2" id="posttd"><a href="#">Extend hour</a></td>
 				</tr>
 			</table>
 		</div>
 		<table width="500" class="tableA" style="border-spacing: 0px;">
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="#" id="leaveBtn">Leave Studycafe</a></th>
+				<th style="height: 50px; background-color: #68CC74;"><a href="leave" id="leaveBtn">Leave Studycafe</a></th>
 				<th style="background-color: #213d62;"><a href="logout" id="logoutBtn">Logout</a></th>
 			</tr>
 		</table>

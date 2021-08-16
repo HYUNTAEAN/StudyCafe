@@ -101,7 +101,7 @@ INSERT INTO
 	trade_num_seq.nextval,
 	#{userid},
 	SYSDATE,
-	#{laveexpiry},
+	TO_DATE(#{laveexpiry}, 'YY-MM-DD hh24:mi'),
 	#{productcode},
 	#{lavetime},
 	#{productname}
@@ -125,13 +125,14 @@ WHERE
 	lave_expiry <![CDATA[>]]> SYSDATE
 </select>
 
-<select id="selectChargeOne" parameterType="String" resultType="lave">
+<select id="selectChargeOne" parameterType="map" resultType="lave">
 SELECT
 	SUM(charge_time) as lavetime
 FROM	
 	Cafe_ChargeInfo
 WHERE
 	userid = #{userid} AND
+	product_code LIKE #{productType} || '%' AND
 	lave_expiry > SYSDATE
 </select>
 
@@ -163,7 +164,7 @@ INSERT INTO
 ) VALUES (
 	charge_num_seq.nextval,
 	#{userid},
-	#{laveexpiry},
+	TO_DATE(#{laveexpiry}, 'YY-MM-DD hh24:mi'),
 	#{chargetime},
 	#{productcode},
 	SYSDATE
@@ -245,7 +246,7 @@ INSERT INTO
 	use_num_seq.nextval,
 	#{userid},
 	SYSDATE,
-	#{endtime},
+	TO_DATE(#{endtime}, 'YY-MM-DD HH24:MI'),
 	#{seatnum}
 )
 </insert>
@@ -259,4 +260,34 @@ WHERE
 	userid = #{userid} AND
 	product_code LIKE #{productType} || '%'
 </select>
+
+<delete id="deleteUse" parameterType="String">
+DELETE FROM
+	Cafe_UseInfo
+WHERE
+	userid = #{userid}
+</delete>
+
+<select id="selectUse" parameterType="String" resultType="use">
+SELECT
+	use_num as usenum,
+	userid,
+	TO_CHAR(start_time, 'YY-MM-DD HH24:MI') as starttime,
+	TO_CHAR(end_time, 'YY-MM-DD HH24:MI') as endtime,
+	seat_num as seatnum
+FROM
+	Cafe_UseInfo
+WHERE
+	userid = #{userid}
+</select>
+
+<update id="paybackTime" parameterType="upCharge">
+UPDATE
+	Cafe_ChargeInfo
+SET
+	charge_time = #{chargetime}
+WHERE
+	userid = #{userid} AND
+	product_code LIKE 'B' || '%'
+</update>
 </mapper>

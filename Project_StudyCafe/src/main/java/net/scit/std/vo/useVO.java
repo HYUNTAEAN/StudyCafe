@@ -13,5 +13,4 @@ public class useVO {
 	private String starttime;	// 입실 시각
 	private String endtime;		// 퇴실 예정 시각
 	private int seatnum;		// 좌석 번호
-	
 }
