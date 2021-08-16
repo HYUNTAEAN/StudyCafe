@@ -213,7 +213,7 @@ function loginChk(){
 		<table width="500" class="tableA" style="border-spacing: 0px;">
 			<tr>
 				<th style="height: 50px; background-color: #68CC74;"><a href="#" id="leaveBtn">Leave Studycafe</a></th>
-				<th style="background-color: #213d62;"><a href="#" id="logoutBtn">Logout</a></th>
+				<th style="background-color: #213d62;"><a href="logout" id="logoutBtn">Logout</a></th>
 			</tr>
 		</table>
 	</div>
