@@ -30,7 +30,7 @@ function cal(resp){
 	$('#cod').val(resp);
 	
 	let lvtime = $("#lvtime").val();
-	let researchData = {"productcode" : resp , "lvtime" : lvtime};
+	let researchData = {"code" : resp , "lvtime" : lvtime};
 
 	
 	$.ajax({

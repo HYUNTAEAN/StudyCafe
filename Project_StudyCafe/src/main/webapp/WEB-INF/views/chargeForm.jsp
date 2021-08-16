@@ -13,6 +13,7 @@
   
 <script>
 $(function(){
+	
 	let type = $("#typechk").val();
 	let firstlave = $("#lvtime").val();
 	if(type == 'C'){
@@ -30,48 +31,105 @@ function cal(resp){
 	$('#cod').val(resp);
 	
 	let lvtime = $("#lvtime").val();
-	let researchData = {"productcode" : resp , "lvtime" : lvtime};
+	let researchData = {"code" : resp , "lvtime" : lvtime};
+	
+	let atResp = resp.charAt(0);
+	
+		$.ajax({
+			url : 'research'
+			, method : 'GET'
+			, data : researchData
+			, success : function(resp){
+				$('#exp').val(resp['expiry']); //유효기간 쓸일 있는지 향후 체크
+				
+				$('#inputCharge').html(resp['result'] + " days");
+				$('#plustime').html(resp['lvtime'] + " days");
+				
+			}
+		});
+	
+};
 
+function cal2(resp){
+	$(".purclick").css("background-color","white");
+	$('#'+resp).css("background-color","red");
+	$('#cod').val(resp);
+	$('#trCod').val(resp);
+	
+	let researchData = {"code" : resp};
 	
 	$.ajax({
-		url : 'research'
+		url : 'timeChk'
+		, method : 'GET'
+		, data : researchData
+		, success : function(resp2){
+		
+			$('#lvtimeone').val(resp2);
+		}
+	})
+	
+}
+
+function hourCharge(param){
+	let cod = $('#cod').val();
+
+	if(cod == ""){
+		alert("상품을 선택해");
+		return; 
+	}
+	
+	$('#hidCharge').val(param);
+	
+	let hidCharge = $('#hidCharge').val();
+	
+	let lvtime = $("#lvtime").val();
+	let researchData = {"lvtime" : lvtime , "hidCharge" : hidCharge};
+	
+	
+	$.ajax({
+		url : 'research2'
 		, method : 'GET'
 		, data : researchData
 		, success : function(resp){
-			let type = $("#typechk").val();
-			$('#exp').val(resp['expiry']);
-			$('#pri').val(resp['price']);
-			
-			if(type == 'C'){
-				$('#chargetime').html(resp['result'] + " days");
-				$('#plustime').html(resp['lvtime'] + " days");
-			} else {
-			$('#chargetime').html(resp['result'] + " hours");
-			$('#plustime').html(resp['lvtime'] + " hours");
-			}
+			$('#plustime').html(resp + " hours");
 		}
 	});
+}
 
-};
-
-function payment(){
-
-	let lavetime = $('#lvtime').val();
-	let charge = $('#chargetime').html();
-	let plus = $('#plustime').html();
-	let expiry = $('#expiry').html();
-	let chargetime = charge.split(' ')[0];
-	let plustime = plus.split(' ')[0];
-	let exp = $('#exp').val();
-	let pri = $('#pri').val();
+function chargeTime(){
 	let cod = $('#cod').val();
+	let typeChk = $('#typechk').val();
+	let lvtimeone = $('#lvtimeone').val();
 	
-	if(chargetime == '0'){
+	if(cod == '' && typeChk == 'C'){
 		alert("상품을 선택해");
 		return;
 	}
+	let chargetime = '';
+	if(typeChk == 'C'){
+		
+		let charge = $('#inputCharge').html();
+
+		chargetime += charge.split(' ')[0];
+	} else {
+		let time = $('#hidCharge').val();
+		chargetime += time; 
+	}
+	
+	if(chargetime == ''){
+		alert("충전시간을 선택해");
+		return;
+	}
+	
+	
+	if(parseInt(lvtimeone) < parseInt(chargetime)){
+		alert("충전 시간 부족");
+		return;
+	}
+	
+	
 	let type = $("#typechk").val();
-	location.href='payment?lavetime='+lavetime+'&chargetime='+chargetime+'&plustime='+plustime+'&type='+type+'&expiry='+exp+'&price='+pri+'&cod='+cod;
+	location.href='inputCharge?type='+typeChk+'&cod='+cod+'&chargetime='+chargetime;
 }
 </script>
 <style>
@@ -154,13 +212,24 @@ a {
 				</tr>
 				<tr class="pretd">
 				<!-- 선택한 패키지의 남아있는 시간 -->
-					<td class="division">Time package remaining time<input type="hidden" id="lvtime" value="${lavetime}"></td>
+					<td class="division">Time package remaining time<input type="hidden" id="lvtime" value="${lavetime}"><input type="hidden" id="lvtimeone" value=""></td>
 					<td class="time" id="firstlv">${lavetime} hours</td>
 				</tr>
 				<tr class="pretd">
 				<!-- 충전할 시간 입력 -->
-					<td class="division">Charging time</td>
-					<td class="time" id="chargetime"><input type="text" style="width: 20px;"></td>
+					<td class="division">Charging time<input type="hidden" id="hidCharge" value=""></td>
+					
+					<c:if test="${productType== 'B'}">
+					<td class="time" id="chargetime">
+						<input type="button" id="inputCharge1" value="1 hours" onclick="hourCharge(1);" style="width: 60px;">
+						<input type="button" id="inputCharge3" value="3 hours" onclick="hourCharge(3);"style="width: 60px;">
+						<input type="button" id="inputCharge5" value="5 hours" onclick="hourCharge(5);"style="width: 60px;">
+					</td>
+					</c:if>
+					<c:if test="${productType== 'C'}">
+					<td class="time" id="inputCharge">${lavetime} days</td>
+					</c:if>
+					
 				</tr>
 				<tr class="pretd">
 				<!-- 선택한 패키지에서 남아있는 시간 - 충전할 시간 -->
@@ -172,21 +241,34 @@ a {
 		<div class="context">
 			<table width="460">
 				<tr>
-					<td style="background-color: #ededed;" class="division">Product name<input type="hidden" id="cod" value=""></td>
+					<td style="background-color: #ededed;" class="division">Product name<input type="hidden" id="cod" value=""><input type="hidden" id="trCod" value=""></td>
 					<td style="background-color: #ededed; text-align: right;">Effective days<input type="hidden" id="exp" value=""></td>
 				</tr>
-			<c:forEach var="product" items="${list}">
-				<tr class="purclick" id="${product.productcode}" onclick="javascript:cal('${product.productcode}');">
-					<td class="division">${product.productname}</td>
-					<td class="time">${product.expirytime}</td>
-					<td class="time">${product.price} WON</td>
+			<c:if test="${productType == 'B'}">
+			<c:forEach var="trade" items="${list}">
+				<tr class="purclick" id="${trade.tradenum}" onclick="javascript:cal2('${trade.tradenum}');">
+					<td class="division">${trade.productname}</td>
+					<td class="time">${trade.lavetime} hours</td>
+					<td class="time">${trade.laveexpiry}</td>
+					
 				</tr>
 			</c:forEach>
+			</c:if>
+				
+			<c:if test="${productType == 'C'}">
+			<c:forEach var="trade" items="${list}">
+				<tr class="purclick" id="${trade.productcode}" onclick="javascript:cal('${trade.productcode}');">
+					<td class="division">${trade.productname}</td>
+					<td class="time">${trade.lavetime} days</td>
+					<td class="time">${trade.laveexpiry}</td>
+				</tr>
+			</c:forEach>
+			</c:if>
 			</table>
 		</div>
 		<table width="500">
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="javascript:payment();" id="UseBtn">Use</a></th>
+				<th style="height: 50px; background-color: #68CC74;"><a href="javascript:chargeTime();" id="UseBtn">Use</a></th>
 			</tr>
 		</table>
 	</div>

@@ -1,10 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>[ seatForm ]</title>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script>
+function seatChk(seat){
+	let seatnum = {"seatnum" : seat};
+
+	$.ajax({
+		url : 'seatChk'
+		, method : 'GET'
+		, data : seatnum
+		, success : function(resp){
+			if(resp == "FAIL"){
+				alert("이용중인 좌석입니다");
+				return;
+			}
+		}
+	});
+	
+	// input css
+	let proType = $("#proType").val();
+	$("#numSeat").val(seat);
+}
+
+function inuse(){
+	let seatnum = $("#numSeat").val();
+	let proType = $("#proType").val();
+	
+	location.href="inuse?seatnum=" + seatnum + "&proType=" + proType;
+	
+};
+</script>
 <style>
 table{
 	margin: auto;
@@ -121,8 +155,8 @@ a {
 				<th>SCIT41 Branch</th>
 			</tr>
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="#" id="homeBtn">Home</a></th>
-				<th style="background-color: #213d62;">Select Seat</th>
+				<th style="height: 50px; background-color: #68CC74;"><a href="/std/" id="homeBtn">Home<input type="hidden" id="numSeat" value=""></a></th>
+				<th style="background-color: #213d62;">Select Seat<input type="hidden" id="proType" value="${productType}"></th>
 			</tr>
 		</table>
 		<table width="500" style="background-color: #E4F1EE;">
@@ -139,109 +173,57 @@ a {
 		</table>
 		<div id="allSeat" style="height: 455px;">
 			<div id="section1" class="seatSection">
-				<input type="button" value="1" class="seatbtn">
-				<input type="button" value="2" class="seatbtn">
-				<input type="button" value="3" class="seatbtn">
-				<input type="button" value="4" class="seatbtn">
-				<input type="button" value="5" class="seatbtn">
-				<input type="button" value="6" class="seatbtn">
-				<input type="button" value="7" class="seatbtn">
-				<input type="button" value="8" class="seatbtn">
-				<input type="button" value="9" class="seatbtn">
-				<input type="button" value="10" class="seatbtn">
-				<input type="button" value="11" class="seatbtn">
-				<input type="button" value="12" class="seatbtn">
-				<input type="button" value="13" class="seatbtn">
+			<c:forEach var="seat" items="${list}" begin="0" end="12" step="1">
+				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+			</c:forEach>
 			</div>
 			<div id="section2" class="seatSection">
-				<input type="button" value="14" class="seatbtn">
-				<input type="button" value="15" class="seatbtn">
-				<input type="button" value="16" class="seatbtn">
-				<input type="button" value="17" class="seatbtn" style="margin-bottom: 33px;">
-				<input type="button" value="18" class="seatbtn">
-				<input type="button" value="19" class="seatbtn">
-				<input type="button" value="20" class="seatbtn">
-				<input type="button" value="21" class="seatbtn" style="margin-bottom: 33px;">
-				<input type="button" value="22" class="seatbtn">
-				<input type="button" value="23" class="seatbtn">
-				<input type="button" value="24" class="seatbtn">
-				<input type="button" value="25" class="seatbtn">
+			<c:forEach var="seat" items="${list}" begin="13" end="24" step="1">
+				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+			
+			</c:forEach>
 			</div>
 			<div id="section3" class="seatSection">
-				<input type="button" value="26" class="seatbtn">
-				<input type="button" value="27" class="seatbtn">
-				<input type="button" value="28" class="seatbtn">
-				<input type="button" value="29" class="seatbtn" style="margin-bottom: 33px;">
-				<input type="button" value="30" class="seatbtn">
-				<input type="button" value="31" class="seatbtn">
-				<input type="button" value="32" class="seatbtn">
-				<input type="button" value="33" class="seatbtn" style="margin-bottom: 33px;">
-				<input type="button" value="34" class="seatbtn">
-				<input type="button" value="35" class="seatbtn">
-				<input type="button" value="36" class="seatbtn">
-				<input type="button" value="37" class="seatbtn">
+			<c:forEach var="seat" items="${list}" begin="25" end="36" step="1">
+				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+			
+			</c:forEach>
 			</div>
 			<div id="section4" class="seatSection">
-				<input type="button" value="38" class="seatbtn" style="margin-left: 98px;">
-				<input type="button" value="39" class="seatbtn" style="margin-right: -3px;">
-				<input type="button" value="40" class="seatbtn" style="margin-right: 30px;">
-				<input type="button" value="41" class="seatbtn">
-				<input type="button" value="42" class="seatbtn" style="margin-right: -3px;">
-				<input type="button" value="43" class="seatbtn" style="margin-right: -3px;">
-				<input type="button" value="44" class="seatbtn" style="margin-right: -3px;">
-				<input type="button" value="45" class="seatbtn">
+			<c:forEach var="seat" items="${list}" begin="37" end="44" step="1">
+				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+			
+			</c:forEach>
 			</div>
 			<div id="section5" class="seatSection">
-				<input type="button" value="46" class="seatbtn">
-				<input type="button" value="47" class="seatbtn">
-				<input type="button" value="48" class="seatbtn" style="margin-bottom: 36px">
-				<input type="button" value="49" class="seatbtn">
-				<input type="button" value="50" class="seatbtn">
-				<input type="button" value="51" class="seatbtn">
+			<c:forEach var="seat" items="${list}" begin="45" end="50" step="1">
+				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				
+			</c:forEach>
 			</div>
 			<div id="section6" class="seatSection">
-				<input type="button" value="52" class="seatbtn">
-				<input type="button" value="53" class="seatbtn">
-				<input type="button" value="54" class="seatbtn">
-				<input type="button" value="55" class="seatbtn">
-				<input type="button" value="56" class="seatbtn">
-				<input type="button" value="57" class="seatbtn">
-				<input type="button" value="58" class="seatbtn">
+			<c:forEach var="seat" items="${list}" begin="51" end="57" step="1">
+				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				
+			</c:forEach>
 			</div>
 			<div id="section7" class="seatSection">
-				<input type="button" value="59" class="seatbtn">
-				<input type="button" value="60" class="seatbtn">
-				<input type="button" value="61" class="seatbtn">
-				<input type="button" value="62" class="seatbtn" style="margin-bottom: 45px;">
-				<input type="button" value="63" class="seatbtn">
-				<input type="button" value="64" class="seatbtn">
-				<input type="button" value="65" class="seatbtn">
-				<input type="button" value="66" class="seatbtn">
-				<input type="button" value="67" class="seatbtn">
-				<input type="button" value="68" class="seatbtn">
-				<input type="button" value="69" class="seatbtn">
-				<input type="button" value="70" class="seatbtn">
+			<c:forEach var="seat" items="${list}" begin="58" end="69" step="1">
+				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+
+			</c:forEach>
 			</div>
 			<div id="section8" class="seatSection">
-				<input type="button" value="71" class="seatbtn">
-				<input type="button" value="72" class="seatbtn">
-				<input type="button" value="73" class="seatbtn">
-				<input type="button" value="74" class="seatbtn">
-				<input type="button" value="75" class="seatbtn" style="margin-bottom: 12px;">
-				<input type="button" value="76" class="seatbtn">
-				<input type="button" value="77" class="seatbtn">
-				<input type="button" value="78" class="seatbtn">
-				<input type="button" value="79" class="seatbtn">
-				<input type="button" value="80" class="seatbtn">
-				<input type="button" value="81" class="seatbtn">
-				<input type="button" value="82" class="seatbtn">
-				<input type="button" value="83" class="seatbtn">
+			<c:forEach var="seat" items="${list}" begin="70" end="82" step="1">
+				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+
+			</c:forEach>
 			</div>
 		</div>
 		<table width="500">
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="#" id="backBtn">Back</a></th>
-				<th style="height: 50px; background-color: #88837d;"><a href="#" id="completeBtn">Complete</a></th>
+				<th style="height: 50px; background-color: #68CC74;"><a href="/std/" id="backBtn">Back</a></th>
+				<th style="height: 50px; background-color: #88837d;"><a href="javascript:inuse();" id="completeBtn">Complete</a></th>
 			</tr>
 		</table>
 	</div>

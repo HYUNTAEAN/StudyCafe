@@ -14,5 +14,5 @@ public class tradeVO {
 	private String laveexpiry;	// 잔여 유효 일시
 	private String productcode; // 상품 코드
 	private int lavetime; 		// 잔여 시간
-	
+	private String productname; // 상품 이름 
 }

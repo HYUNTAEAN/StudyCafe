@@ -3,10 +3,14 @@ package net.scit.std.dao;
 import java.util.List;
 import java.util.Map;
 
+import net.scit.std.vo.chargeVO;
 import net.scit.std.vo.laveVO;
 import net.scit.std.vo.memberVO;
 import net.scit.std.vo.productVO;
+import net.scit.std.vo.seatVO;
 import net.scit.std.vo.tradeVO;
+import net.scit.std.vo.upChargeVO;
+import net.scit.std.vo.useVO;
 
 public interface stdMapper {
 
@@ -25,5 +29,27 @@ public interface stdMapper {
 	public productVO selectProductOne(String productcode);
 
 	public int insertTrade(tradeVO trade);
+
+	public List<tradeVO> selectTradeList(Map<String, String> map);
+
+	public laveVO selectChargeOne(String userid);
+
+	public tradeVO selectTradeOne(int tradenum);
+
+	public int insertCharge(chargeVO charge);
+
+	public tradeVO selectTradeDay(Map<String, String> map);
+
+	public int updateTrade(upChargeVO upCharge);
+
+	public List<chargeVO> selectChargeInfo(Map<String, String> map);
+
+	public List<seatVO> selectSeatList();
+
+	public useVO selectSeatOne(int seatnum);
+
+	public int insertUse(useVO use);
+
+	public chargeVO selectChargeTime(Map<String, String> map);
 
 }

@@ -22,7 +22,8 @@ CREATE TABLE Cafe_Member
 
 CREATE TABLE Cafe_SeatInfo
 (
-	seat_num number primary key 			-- 좌석 번호
+	seat_num number primary key, 			-- 좌석 번호
+	section_num varchar2(50)                -- 구역 번호
 );
 
 CREATE TABLE Cafe_ProductInfo
@@ -30,7 +31,7 @@ CREATE TABLE Cafe_ProductInfo
 	product_code varchar2(30) primary key, 	-- 상품 코드
 	product_time number not null, 			-- 상품 시간
 	price number not null, 					-- 상품 가격
-	expiry_time number not null, 				-- 상품 유효 일시
+	expiry_time number not null, 			-- 상품 유효 일시
 	product_name varchar(70)				-- 상품 이름
 );
 
@@ -39,9 +40,10 @@ CREATE TABLE Cafe_TradeInfo
 	trade_num number primary key,												-- 거래 번호
 	userid varchar2(30) not null references Cafe_Member(userid),				-- 사용자 아이디
 	trade_time date default sysdate,											-- 거래 시각
-	lave_expiry date,												-- 잔여 유효 일시	
-	product_code varchar2(30) references Cafe_ProductInfo(product_code),			-- 상품 코드
-	lave_time number															-- 잔여 시간
+	lave_expiry date,															-- 잔여 유효 일시	
+	product_code varchar2(30) references Cafe_ProductInfo(product_code),		-- 상품 코드
+	lave_time number, 															-- 잔여 시간
+	product_name varchar(70)													-- 상품 이름															
 );
 
 CREATE TABLE Cafe_ChargeInfo
@@ -49,7 +51,9 @@ CREATE TABLE Cafe_ChargeInfo
 	charge_num number primary key,												--충전 번호
 	userid varchar2(30) not null,												-- 사용자 아이디
 	lave_expiry date,															-- 잔여 유효 일시
-	charge_time number															-- 충전 시간
+	charge_time number,															-- 충전 시간
+	product_code varchar2(30) not null references Cafe_ProductInfo(product_code),-- 상품 코드
+	charge_date date not null													-- 충전 일시
 );
 CREATE TABLE Cafe_UseInfo
 (

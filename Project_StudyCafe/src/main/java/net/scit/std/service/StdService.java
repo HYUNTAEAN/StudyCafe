@@ -11,10 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.scit.std.dao.StdRepository;
+import net.scit.std.vo.chargeVO;
 import net.scit.std.vo.laveVO;
 import net.scit.std.vo.memberVO;
 import net.scit.std.vo.productVO;
+import net.scit.std.vo.seatVO;
 import net.scit.std.vo.tradeVO;
+import net.scit.std.vo.upChargeVO;
+import net.scit.std.vo.useVO;
 
 @Service
 public class StdService {
@@ -94,6 +98,7 @@ public class StdService {
 		productVO product = selectProductOne(productcode);
 		int expiry = product.getExpirytime();
 		int producttime = product.getProducttime();
+		String productname = product.getProductname();
 		
 		Calendar calendar = new GregorianCalendar(Locale.KOREA);
 		calendar.add(Calendar.DAY_OF_MONTH, expiry);
@@ -102,6 +107,7 @@ public class StdService {
 		String laveexpiry = fm.format(calendar.getTime());
 		trade.setLaveexpiry(laveexpiry);
 		trade.setLavetime(producttime);
+		trade.setProductname(productname);
 		
 		int result = repo.insertTrade(trade);
 		
@@ -109,10 +115,90 @@ public class StdService {
 	}
 
 
-	private productVO selectProductOne(String productcode) {
+	public productVO selectProductOne(String productcode) {
 		productVO product = repo.selectProductOne(productcode);
 		
 		return product;
+	}
+
+
+	public List<tradeVO> selectTradeList(Map<String, String> map) {
+		List<tradeVO> list = repo.selectTradeList(map);
+		
+		return list;
+	}
+
+
+	public laveVO selectChargeOne(String userid) {
+		laveVO lave = repo.selectChargeOne(userid);
+		
+		return lave;
+	}
+
+
+	public tradeVO selectTradeOne(int tradenum) {
+		tradeVO trade = repo.selectTradeOne(tradenum);
+		
+		return trade;
+	}
+
+
+	public int insertCharge(chargeVO charge) {
+		int result = repo.insertCharge(charge);
+		
+		return result;
+	}
+
+
+	public tradeVO selectTradeDay(Map<String, String> map) {
+		tradeVO trade = repo.selectTradeDay(map);
+		
+		return trade;
+	}
+
+
+	public int updateTrade(upChargeVO upCharge) {
+		
+		int result = repo.updateTrade(upCharge);
+		
+		return result;
+	}
+
+
+	public List<chargeVO> selectChargeInfo(Map<String, String> map) {
+		List<chargeVO> charge = repo.selectChargeInfo(map);
+		
+		return charge;
+	}
+
+
+	public List<seatVO> selectSeatList() {
+		List<seatVO> list = repo.selectSeatList();
+		
+		return list;
+	}
+
+
+	public useVO selectSeatOne(int seatnum) {
+		useVO use = repo.selectSeatOne(seatnum);
+		
+		return use;
+	}
+
+
+	public int insertUse(useVO use) {
+		
+		
+		int result = repo.insertUse(use);
+		
+		return result;
+	}
+
+
+	public chargeVO selectChargeTime(Map<String, String> map) {
+		chargeVO list = repo.selectChargeTime(map);
+		
+		return list;
 	}
 
 
