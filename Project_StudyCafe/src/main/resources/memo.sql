@@ -61,13 +61,13 @@ CREATE TABLE Cafe_UseInfo
 	userid varchar2(30) not null references Cafe_Member(userid),				-- 사용자 아이디
 	start_time date default sysdate not null,									-- 입실 시각
 	end_time date not null,														-- 퇴실 예정 시각
-	seat_num number not null references Cafe_SeatInfo(seat_num)					-- 좌석 번호
+	seat_num number not null references Cafe_SeatInfo(seat_num)				-- 좌석 번호
 );
 
 CREATE SEQUENCE trade_num_seq;	-- 거래 번호 시퀀스
 CREATE SEQUENCE use_num_seq;	-- 이용 번호 시퀀스
 CREATE SEQUENCE charge_num_seq;	-- 충전 번호 시퀀스
-
+CREATE SEQUENCE seat_num_seq;   -- 좌석 번호 시퀀스
 
 DROP TABLE Cafe_Member;
 DROP TABLE Cafe_SeatInfo;

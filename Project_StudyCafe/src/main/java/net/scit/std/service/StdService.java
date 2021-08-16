@@ -85,7 +85,6 @@ public class StdService {
 
 
 	public String monthCal(int nMonth) {
-		System.out.println(nMonth);
 		String[] monthText = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		
 		String eMonth = monthText[nMonth-1];
@@ -103,9 +102,10 @@ public class StdService {
 		Calendar calendar = new GregorianCalendar(Locale.KOREA);
 		calendar.add(Calendar.DAY_OF_MONTH, expiry);
 		
-		SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd");
+		SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd hh:mm");
 		String laveexpiry = fm.format(calendar.getTime());
 		trade.setLaveexpiry(laveexpiry);
+		System.out.println(producttime);
 		trade.setLavetime(producttime);
 		trade.setProductname(productname);
 		
@@ -129,8 +129,8 @@ public class StdService {
 	}
 
 
-	public laveVO selectChargeOne(String userid) {
-		laveVO lave = repo.selectChargeOne(userid);
+	public laveVO selectChargeOne(Map<String, String> map) {
+		laveVO lave = repo.selectChargeOne(map);
 		
 		return lave;
 	}
@@ -199,6 +199,27 @@ public class StdService {
 		chargeVO list = repo.selectChargeTime(map);
 		
 		return list;
+	}
+
+
+	public int deleteUse(String userid) {
+		int result = repo.deleteUse(userid);
+		
+		return result;
+	}
+
+
+	public useVO selectUse(String userid) {
+		useVO use = repo.selectUse(userid);
+		
+		return use;
+	}
+
+
+	public int paybackTime(upChargeVO payback) {
+		int result = repo.paybackTime(payback);
+		
+		return result;
 	}
 
 

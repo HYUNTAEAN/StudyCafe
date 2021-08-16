@@ -13,8 +13,22 @@
   
 <script>
 $(function(){
-	
 	let type = $("#typechk").val();
+	
+	let myData = {"type" : type};
+	
+	$.ajax({
+		url : 'chargeChk'
+		, method : 'GET'
+		, data : myData
+		, success : function(resp){
+			if(resp == "FAIL"){
+				alert("이미 충전한 상품 존재");
+				location.href="/std/";
+			}
+		}
+	})
+	
 	let firstlave = $("#lvtime").val();
 	if(type == 'C'){
 		$('#firstlv').html(firstlave + " days");

@@ -104,10 +104,10 @@ public class StdRepository {
 	}
 
 
-	public laveVO selectChargeOne(String userid) {
+	public laveVO selectChargeOne(Map<String, String> map) {
 		stdMapper mapper = session.getMapper(stdMapper.class);
 		
-		laveVO lave = mapper.selectChargeOne(userid);
+		laveVO lave = mapper.selectChargeOne(map);
 		
 		return lave;
 	}
@@ -191,5 +191,32 @@ public class StdRepository {
 		chargeVO list = mapper.selectChargeTime(map);
 		
 		return list;
+	}
+
+
+	public int deleteUse(String userid) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		int result = mapper.deleteUse(userid);
+		
+		return result;
+	}
+
+
+	public useVO selectUse(String userid) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		useVO use = mapper.selectUse(userid);
+		
+		return use;
+	}
+
+
+	public int paybackTime(upChargeVO payback) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		int result = mapper.paybackTime(payback);
+		
+		return result;
 	}
 }

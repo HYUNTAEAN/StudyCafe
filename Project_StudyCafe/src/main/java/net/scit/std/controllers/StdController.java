@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -93,7 +94,17 @@ public class StdController {
 		map.put("productType", productType);
 		
 		int result = service.selectLave(map);
+		if(!"C".equals(productType)){
+			result /= 60;
+		}
 		
+//		float time = result/60;
+//		String timeSt = String.valueOf(time);
+//		String sHour = timeSt.split(".")[0];
+//		String sMin = timeSt.split(".")[1];
+//		
+//		String timeText = sHour + "시간";
+				
 		model.addAttribute("productType", productType);
 		model.addAttribute("list", list);
 		model.addAttribute("lavetime", result);
@@ -115,12 +126,17 @@ public class StdController {
 		
 		lvtime += result;
 		
-		System.out.println(lave.getExpirytime());
+		String type = code.substring(0,1);
+		if(!"C".equals(type)){
+		result /= 60;
+		lvtime /= 60;
+		}
+		
 		map.put("result", result);
 		map.put("lvtime", lvtime);
 		map.put("expiry", lave.getExpirytime());
 		map.put("price", lave.getPrice());
-		System.out.println(map);
+
 		return map;
 	}
 	
@@ -142,10 +158,6 @@ public class StdController {
 		int nDay = calendar.get(Calendar.DAY_OF_MONTH);
 		int nHour = calendar.get(Calendar.HOUR_OF_DAY);
 		int nMinu = calendar.get(Calendar.MINUTE);
-		
-		
-		System.out.println(nHour + " " + nMinu);
-		System.out.println(nYear + " " + nMonth + " " + nDay);
 		
 		String eMonth = service.monthCal(nMonth);
 		
@@ -189,11 +201,19 @@ public class StdController {
 		map.put("productType", productType);
 		
 		List<tradeVO> list = service.selectTradeList(map);
-		laveVO charged = service.selectChargeOne(userid);
+		laveVO charged = service.selectChargeOne(map);
 		int lavetime = 0;
-		
 		if(charged != null){
 			lavetime = charged.getLavetime();
+		}
+		if("B".equals(productType)){
+			for(tradeVO t : list){
+				int lv = t.getLavetime();
+				System.out.println(lv);
+				lv /= 60;
+				t.setLavetime(lv);
+			}
+			lavetime /=60;
 		}
 		
 		model.addAttribute("lavetime", lavetime);
@@ -203,15 +223,33 @@ public class StdController {
 		return "chargeForm";
 	}
 	
+	@RequestMapping("/chargeChk")
+	public @ResponseBody String chargeChk(String type, HttpSession session){
+		String userid = (String) session.getAttribute("loginId");		
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("userid", userid);
+		map.put("productType", type);
+		
+		List<chargeVO> list = service.selectChargeInfo(map);
+		
+		if(list.size() < 1){
+			return "SUCCESS";
+		}
+		
+		return "FAIL";
+	}
+	
 	@RequestMapping("/inputCharge")
 	public String inputCharge(String type, String cod, String chargetime, HttpSession session){
 		String userid = (String) session.getAttribute("loginId");
 
 		// 타입, 코드(시간-거래번호 , 기간제-상품코드, 충전할시간)
 		
-		int finalCharge = Integer.parseInt(chargetime);
+		int finalCharge = (Integer.parseInt(chargetime));
 
 		if("B".equals(type)){
+			finalCharge *= 60;
 			int tradenum = Integer.parseInt(cod);
 			tradeVO trade = service.selectTradeOne(tradenum);
 
@@ -240,7 +278,7 @@ public class StdController {
 			Calendar calendar = new GregorianCalendar(Locale.KOREA);
 			calendar.add(Calendar.DAY_OF_MONTH, charget);
 			
-			SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd");// 프로덕트에서 시간 가져와서 차지타임 대체
+			SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd hh:mm");// 프로덕트에서 시간 가져와서 차지타임 대체
 			String laveexpiry = fm.format(calendar.getTime());
 
 			chargeVO charge = new chargeVO(0, userid, laveexpiry, finalCharge, cod, null);
@@ -260,18 +298,28 @@ public class StdController {
 		return lvtime;
 	}
 	
-	@RequestMapping("/use")
-	public String use(String productType, Model model, HttpSession session){
+	@RequestMapping("/useChk")
+	public @ResponseBody String useChk(String productType, HttpSession session){
 		String userid = (String) session.getAttribute("loginId");
 		Map <String, String> map = new HashMap<>();
 		map.put("userid", userid);
 		map.put("productType", productType);
 		
 		List<chargeVO> charge = service.selectChargeInfo(map);
+		useVO use = service.selectUse(userid);
 		
 		if(charge.size() < 1){
-			return "redirect:/";
+			return "NoCharged";
 		}
+		if(use != null){
+			return "Used";
+		}
+		return "SUCCESS";
+	}
+	
+	@RequestMapping("/use")
+	public String use(String productType, Model model, HttpSession session){
+		
 		List<seatVO> list = service.selectSeatList();
 
 		System.out.println(list);
@@ -300,7 +348,6 @@ public class StdController {
 		
 		map.put("userid", userid);
 		map.put("productType", proType);
-		System.out.println("proType : " + proType);
 		chargeVO alltime = service.selectChargeTime(map);
 		
 		if(alltime == null){
@@ -317,13 +364,13 @@ public class StdController {
 			Calendar calendar = new GregorianCalendar(Locale.KOREA);
 			calendar.add(Calendar.DAY_OF_MONTH, chargetime);
 			
-			SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd");
+			SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd HH24:MI");
 			endtime = fm.format(calendar.getTime());
 		} else {
 			Calendar calendar = new GregorianCalendar(Locale.KOREA);
 			calendar.add(Calendar.HOUR, chargetime);
-			System.out.println(calendar);
-			SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd");
+			
+			SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd hh:mm");
 			endtime = fm.format(calendar.getTime());	
 		}
 		
@@ -332,10 +379,72 @@ public class StdController {
 		int result = service.insertUse(use);
 		
 		if(result == 1){
-			System.out.println("success");
 			return "redirect:/";
 		}
-		System.out.println("fail");
 		return "redirect:/";
 	}
+	
+	@RequestMapping("/leave")
+	public String leave(HttpSession session){
+		String userid = (String) session.getAttribute("loginId");
+		String type = "B";
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("userid", userid);
+		map.put("productType", type);
+		
+		useVO use = service.selectUse(userid);
+		
+		if(use == null){
+			return "redirect:/";
+		}
+		
+		String starttime = use.getStarttime();
+		String nYear1 = "20" + starttime.substring(0, 2);
+		String nMonth1 = starttime.substring(3, 5);
+		String nDay1 = starttime.substring(6, 8);
+		String nHour1 = starttime.substring(9, 11);
+		String nMin1 = starttime.substring(12);
+		
+		Calendar cal1 = new GregorianCalendar();
+		cal1.set(Integer.parseInt(nYear1), (Integer.parseInt(nMonth1)-1), Integer.parseInt(nDay1), Integer.parseInt(nHour1), Integer.parseInt(nMin1));
+		
+		Calendar calnow = new GregorianCalendar(Locale.KOREA);
+
+		long diffSec = (calnow.getTimeInMillis() - cal1.getTimeInMillis())/1000;
+		long diffMin = diffSec/60;
+		
+		int paybackMin = (int) diffMin;
+		
+		chargeVO charge = service.selectChargeTime(map);
+		
+		int chargetime = charge.getChargetime();
+		chargetime += paybackMin;
+		System.out.println(chargetime);
+		
+		upChargeVO payback = new upChargeVO(0, userid, chargetime, null);
+		
+		int result = service.deleteUse(userid);
+		int result2 = service.paybackTime(payback); 
+		
+		System.out.println(result);
+		System.out.println(result2);
+		
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/seatChange")
+	public @ResponseBody String seatChange(HttpSession session){
+
+		String userid = (String) session.getAttribute("loginId");
+		useVO use = service.selectUse(userid);
+		
+		if(use == null){
+			return "FAIL";
+		}
+		return "SUCCESS";
+	}
+	
 }
