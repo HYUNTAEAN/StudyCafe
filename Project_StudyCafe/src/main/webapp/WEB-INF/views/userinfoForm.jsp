@@ -68,7 +68,7 @@ p {
 			</tr>
 			<tr>
 				<th style="height: 50px; background-color: #68CC74;"><a
-					href="#" id="HomeBtn">Home</a></th>
+					href="/std/" id="HomeBtn">Home</a></th>
 				<th style="background-color: #213d62;">Payment</th>
 			</tr>
 		</table>
@@ -77,29 +77,34 @@ p {
 			<table width="460">
 				<tr>
 					<td class="division" width="30%">ID</td>
-					<td class="time">010-1111-2222</td>
+					<td class="time">${sessionScope.loginId}</td>
 				</tr>
 				<tr>
 					<td class="check" colspan="2">Services in use</td>
 				</tr>
 				<tr>
 					<td class="division">Day Package</td>
-					<td class="time">28 days Package</td>
+					<td class="time"><c:if test="${chargeC != null}">${cName}</c:if><c:if test="${chargeC ==null}">구매한 상품이 없습니다</c:if></td>
 				</tr>
 				<tr>
 					<td class="division">Time Package</td>
-					<td class="time">50 Hours Package</td>
+					<td class="time"><c:if test="${chargeB != null}">${bName}</c:if><c:if test="${chargeB ==null} ==null">구매한 상품이 없습니다</c:if></td>
 				</tr>
 				<tr>
 					<td class="check" colspan="2">Check remaining time/days</td>
 				</tr>
 				<tr>
 					<td class="division">Charged days</td>
-					<td class="time">20 days</td>
+					<td class="time"><c:if test="${cTime > 1}">${cTime}</c:if><c:if test="${cTime < 1}">0</c:if> days</td>
 				</tr>
 				<tr>
 					<td class="division">Charged time</td>
-					<td class="time">14 hours</td>
+					<c:if test="${bTime > 1}">
+						<td class="time">${bTime} hours</td>
+					</c:if>
+					<c:if test="${aTime > 1}">
+						<td class="time">${aTime} hours</td>
+					</c:if>
 				</tr>
 				
 				<c:if test="${list.size() < 1}">

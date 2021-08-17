@@ -35,8 +35,12 @@ function inuse(){
 	let seatnum = $("#numSeat").val();
 	let proType = $("#proType").val();
 	
-	location.href="inuse?seatnum=" + seatnum + "&proType=" + proType;
-	
+	if(proType == 'D'){
+		alert("좌석을 " + seatnum + " 번 좌석으로 변경합니다.");
+		location.href="useChange?seatnum=" + seatnum + "&proType=" + proType;
+	} else {
+		location.href="inuse?seatnum=" + seatnum + "&proType=" + proType;
+	}
 };
 </script>
 <style>

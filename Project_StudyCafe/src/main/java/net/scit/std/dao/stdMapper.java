@@ -58,4 +58,14 @@ public interface stdMapper {
 
 	public int paybackTime(upChargeVO payback);
 
+	public int updateUse(useVO use);
+
+	public List<chargeVO> selectChargeAll(String userid);
+
+	public String selectPName(String productcode);
+
+	public tradeVO ticketChk(Map<String, String> map);
+
+	public List<tradeVO> ticketChk2(Map<String, String> map);
+
 }

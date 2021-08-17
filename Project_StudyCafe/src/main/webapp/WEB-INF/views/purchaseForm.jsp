@@ -22,6 +22,20 @@ $(function(){
 	}
 	$(".pretd").css("background-color","white");
 	$(".purclick").css("background-color","white");
+	
+	let myData = {"type" : type};
+	
+	$.ajax({
+		url : 'ticketChk'
+		, method : 'GET'
+		,data : myData
+		, success : function(resp){
+			if(resp == "FAIL"){
+				alert("구매한 패키지 내역이 존재합니다.");
+				location.href = "/std/";
+			}
+		}
+	});
 });
 
 function cal(resp){

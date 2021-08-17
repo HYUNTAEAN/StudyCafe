@@ -105,7 +105,6 @@ public class StdService {
 		SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd hh:mm");
 		String laveexpiry = fm.format(calendar.getTime());
 		trade.setLaveexpiry(laveexpiry);
-		System.out.println(producttime);
 		trade.setLavetime(producttime);
 		trade.setProductname(productname);
 		
@@ -220,6 +219,41 @@ public class StdService {
 		int result = repo.paybackTime(payback);
 		
 		return result;
+	}
+
+
+	public int updateUse(useVO use) {
+		int result = repo.updateUse(use);
+		
+		return result;
+	}
+
+
+	public List<chargeVO> selectChargeAll(String userid) {
+		List<chargeVO> charge = repo.selectChargeAll(userid);
+		
+		return charge;
+	}
+
+
+	public String selectPName(String productcode) {
+		String productName = repo.selectPName(productcode);
+		
+		return productName;
+	}
+
+
+	public tradeVO ticketChk(Map<String, String> map) {
+		tradeVO product = repo.ticketChk(map);
+		
+		return product;
+	}
+
+
+	public List<tradeVO> ticketChk2(Map<String, String> map) {
+		List<tradeVO> tradelist = repo.ticketChk2(map);
+		
+		return tradelist;
 	}
 
 

@@ -68,12 +68,12 @@ function seatChange(){
 	$.ajax({
 		url : 'seatChange'
 		, method : 'GET'
-		success : function(resp){
+		,success : function(resp){
 			if(resp == "FAIL"){
 				alert("입실 정보가 없습니다");
 				location.href="/std/";
 			} else {
-				location.href="";///////////////고민
+				location.href="use?productType=D";
 			}
 		}
 	});
@@ -244,9 +244,9 @@ function seatChange(){
 				</tr>
 				<tr>
 					<td class="lasttd" id="posttd">Additional Function</td>
-					<td class="change" colspan="2" id="posttd"><a href="#">Check User Information</a></td>
+					<td class="change" colspan="2" id="posttd"><a href="userInfo">Check User Information</a></td>
 					<td class="change" colspan="2" id="posttd"><a href="javascript:seatChange();">Change Seat</a></td>
-					<td class="change" colspan="2" id="posttd"><a href="#">Extend hour</a></td>
+					<td class="change" colspan="2" id="posttd"><a href="extendHour">Extend hour</a></td>
 				</tr>
 			</table>
 		</div>
