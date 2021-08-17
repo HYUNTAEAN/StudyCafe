@@ -57,7 +57,9 @@ public class StdController {
 	}
 	
 	@RequestMapping("/join")
-	public String join(){
+	public String join(String cod, Model model){
+		System.out.println(cod);
+		model.addAttribute("key", cod);
 		return "joinForm";
 	}
 	
@@ -73,6 +75,14 @@ public class StdController {
 		return "FALSE";
 	}
 	
+	@RequestMapping(value="/resetPassword", method=RequestMethod.GET)
+	public String resetPassword(String userid, String userpwd){
+		memberVO member = new memberVO(userid, userpwd);
+		
+		int result = service.resetPassword(member);
+		
+		return "redirect:/";
+	}
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(memberVO member){
 		int result = service.join(member);
@@ -455,17 +465,16 @@ public class StdController {
 		
 		chargeVO charge = service.selectChargeTime(map);
 		
-		int chargetime = charge.getChargetime();
+		int chargetime = 0; 
+		if(charge != null){
+		chargetime = charge.getChargetime();
 		chargetime += paybackMin;
 		System.out.println(chargetime);
-		
 		upChargeVO payback = new upChargeVO(0, userid, chargetime, null);
 		
 		int result = service.deleteUse(userid);
 		int result2 = service.paybackTime(payback); 
-		
-		System.out.println(result);
-		System.out.println(result2);
+		}
 		
 		session.invalidate();
 		
@@ -543,6 +552,8 @@ public class StdController {
 		if(chargeA.size() > 0){
 			aTime = chargeA.get(0).getChargetime()/60; 
 		}
+		System.out.println(chargeC);
+		System.out.println(chargeB);
 		model.addAttribute("chargeC", chargeC);
 		model.addAttribute("chargeB", chargeB);
 		model.addAttribute("chargeA", chargeA);

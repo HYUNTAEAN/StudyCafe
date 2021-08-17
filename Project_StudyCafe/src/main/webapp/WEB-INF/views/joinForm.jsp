@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,26 @@
   crossorigin="anonymous"></script>
   
 <script>
+function resetMember(){
+	let userid = $("#userid").val();
+	let userpwd = $("#userpwd").val();
+	let pwdcheck = $("#pwdcheck").val();
+	
+	if(userpwd != pwdcheck){
+		alert("비밀번호 불일치");
+		$("#pwdcheck").focus();
+		return;
+	}
+	
+	if(userid.trim().length < 10 || userid.trim().length > 11){
+		alert("아이디 길이 오류");
+		$("#userid").focus();
+		return;
+	}
+	
+	location.href="resetPassword?userid="+userid+"&userpwd="+userpwd;
+	
+}
 
 function joinMember(){
 	let userid = $("#userid").val();
@@ -29,6 +50,11 @@ function joinMember(){
 		return;
 	}
 	
+	if(userpwd.trim().length < 1 || userpwd.trim().length > 10){
+		alert("비밀번호 길이 오류");
+		$("#userpwd").focus();
+	}
+		
 	let joinData = {"userid" : userid};
 	
 	$.ajax({
@@ -37,12 +63,6 @@ function joinMember(){
 		, data : joinData
 		, success : function(resp){
 			if(resp == "SUCCESS"){
-				if(userpwd.trim().length < 1 || userpwd.trim().length > 10){
-					alert("비밀번호 길이 오류");
-					$("#userpwd").focus();
-					return;
-				} 
-
 				$("#myFrm").submit();
 			} else {
 			alert("아이디 중복");
@@ -50,7 +70,7 @@ function joinMember(){
 			}
 		}
 	});
-};
+}
 
 $(function () {
 	$("#reset1").on("click", function () {
@@ -67,6 +87,7 @@ $(function () {
 		$("#pwdcheck").val("").focus();
 	});
 });
+
 </script>
 
 <style>
@@ -129,11 +150,12 @@ input{
 		<table width="500">
 			<tr>
 				<th style="height: 50px;">STUDYCAFE</th>
-				<th>SCIT41 Branch</th>
+				<th>SCIT41 Branch<input type="hidden" id="key" value="${key}"></th>
 			</tr>
 			<tr>
 				<th style="height: 50px; background-color: #68CC74;"><a href="/std/" id="HomeBtn">Home</a></th>
-				<th style="background-color: #213d62;">Join</th>
+				<c:if test="${key == 'join'}"><th style="background-color: #213d62;">Join</th></c:if>
+				<c:if test="${key == 'reset'}"><th style="background-color: #213d62;">Reset</th></c:if>
 			</tr>
 		</table>
 		<div class="context">
@@ -165,7 +187,8 @@ input{
 	</div>
 		<table width="500">
 			<tr>
-				<td style="height: 50px; background-color: #68CC74;"><a href="javascript:joinMember();" id="joinBtn"><b>JoinStudyCafe</b></a></td>
+				<c:if test="${key == 'join'}"><td style="height: 50px; background-color: #68CC74;"><a href="javascript:joinMember();" id="joinBtn"><b>JoinStudyCafe</b></a></td></c:if>
+				<c:if test="${key == 'reset'}"><td style="height: 50px; background-color: #68CC74;"><a href="javascript:resetMember();" id="joinBtn"><b>Reset</b></a></td></c:if>
 			</tr>
 		</table>
 </body>

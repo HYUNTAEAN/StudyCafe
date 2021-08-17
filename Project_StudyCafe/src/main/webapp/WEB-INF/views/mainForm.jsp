@@ -194,8 +194,8 @@ function seatChange(){
 			<th><input type="password" id="userpwd" name="userpwd" style="width:200px"></th>
 		</tr>
 		<tr>
-			<td><a href="join" class="button1">Join</a></td>
-			<td><a href="#" class="button2">Reset Password</a></td>
+			<td><a href="join?cod=join" class="button1">Join</a></td>
+			<td><a href="join?cod=reset" class="button2">Reset Password</a></td>
 		</tr>
 		</c:if>
 		</table>
@@ -244,9 +244,8 @@ function seatChange(){
 				</tr>
 				<tr>
 					<td class="lasttd" id="posttd">Additional Function</td>
-					<td class="change" colspan="2" id="posttd"><a href="userInfo">Check User Information</a></td>
-					<td class="change" colspan="2" id="posttd"><a href="javascript:seatChange();">Change Seat</a></td>
-					<td class="change" colspan="2" id="posttd"><a href="extendHour">Extend hour</a></td>
+					<td class="change" colspan="3" id="posttd"><a href="userInfo">Check User Information</a></td>
+					<td class="change" colspan="3" id="posttd"><a href="javascript:seatChange();">Change Seat</a></td>
 				</tr>
 			</table>
 		</div>
