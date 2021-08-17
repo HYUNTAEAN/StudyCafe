@@ -78,6 +78,18 @@ function seatChange(){
 		}
 	});
 }
+
+$(function () {
+	$("#loginBtn").on("mouseover", function () {
+		$(this).css("background-color", "rgba(90, 148, 244, 0.8)");
+	});
+	$("#loginBtn").on("mouseout", function () {
+		$(this).css("background-color", "#1E6EC7");
+	});
+	$("#loginBtn").on("mousedown", function () {
+		$(this).css("background-color", "rgba(139, 179, 244, 1)");
+	});
+});
 </script>
 
 <style>
@@ -109,7 +121,7 @@ function seatChange(){
   		margin: 4px 2px;
 }
 	
-	.button {background-color: #1E6EC7;} 
+	.button {background-color: #1E6EC7; width: 70%;} 
 	.button1 {background-color: #0386F2; width: 73%;}
 	.button2 {background-color: #68CC74; width: 73%;}
 	
@@ -188,7 +200,7 @@ function seatChange(){
 		<tr>
 			<th><input type="text" id="userid" name="userid" style="width:200px"></th>
 			<td rowspan="2">
-			<a href="javascript:loginChk();" class="button">ID/PW Login</a></td>
+			<a href="javascript:loginChk();" class="button" id="loginBtn">ID/PW Login</a></td>
 		</tr>
 		<tr>
 			<th><input type="password" id="userpwd" name="userpwd" style="width:200px"></th>
