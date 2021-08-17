@@ -357,4 +357,19 @@ SET
 WHERE
 	userid = #{userid}
 </update>
+
+<select id="availSeat" resultType="lave">
+SELECT
+	COUNT(seat_num) as lavetime
+FROM
+	Cafe_SeatInfo
+</select>
+
+<select id="unavailSeat" resultType="lave">
+SELECT
+	COUNT(use_num) as lavetime
+FROM
+	Cafe_UseInfo
+</select>
+
 </mapper>

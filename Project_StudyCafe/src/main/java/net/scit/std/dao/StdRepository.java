@@ -273,4 +273,22 @@ public class StdRepository {
 		
 		return result;
 	}
+
+
+	public laveVO availSeat() {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		laveVO availSeat = mapper.availSeat();
+		
+		return availSeat;
+	}
+
+
+	public laveVO unavailSeat() {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		laveVO unavailSeat = mapper.unavailSeat();
+		
+		return unavailSeat;
+	}
 }
