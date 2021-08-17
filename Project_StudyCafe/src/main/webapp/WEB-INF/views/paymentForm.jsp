@@ -24,6 +24,18 @@ $(function(){
 		$('#plustime').html(pltime + " days");
 	}
 });
+
+$(function () {
+	$(".highlight").on("mouseover", function () {
+		$(this).css("background-color", "#62C15B");
+	});
+	$(".highlight").on("mouseout", function () {
+		$(this).css("background-color", "rgba(104, 204, 116, 1)");
+	});
+	$(".highlight").on("mousedown", function () {
+		$(this).css("background-color", "rgba(104, 204, 116, 0.8)");
+	});
+});
 </script>
 <style>
 table {
@@ -95,7 +107,7 @@ p {
 				<th>SCIT41 Branch</th>
 			</tr>
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a
+				<th class="highlight" style="height: 50px; background-color: #68CC74;"><a
 					href="#" id="HomeBtn">Home</a></th>
 				<th style="background-color: #213d62;">Payment</th>
 			</tr>
@@ -152,7 +164,7 @@ p {
 		</div>
 		<table width="500">
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;">
+				<th style="height: 50px; background-color: #68CC74;" class="highlight">
 				<a href="endPay?productcode=${productcode}" id="PaymentBtn">Payment</a></th>
 			</tr>
 		</table>
