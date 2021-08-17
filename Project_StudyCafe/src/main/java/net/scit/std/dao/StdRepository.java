@@ -264,4 +264,13 @@ public class StdRepository {
 		
 		return tradelist;
 	}
+
+
+	public int resetPassword(memberVO member) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		int result = mapper.resetPassword(member);
+		
+		return result;
+	}
 }

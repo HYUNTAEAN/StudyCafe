@@ -68,4 +68,6 @@ public interface stdMapper {
 
 	public List<tradeVO> ticketChk2(Map<String, String> map);
 
+	public int resetPassword(memberVO member);
+
 }

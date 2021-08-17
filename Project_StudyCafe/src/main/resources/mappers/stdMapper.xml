@@ -349,4 +349,12 @@ WHERE
 	lave_expiry <![CDATA[>]]> SYSDATE
 </select>
 
+<update id="resetPassword" parameterType="member">
+UPDATE
+	Cafe_Member
+SET
+	userpwd = #{userpwd}
+WHERE
+	userid = #{userid}
+</update>
 </mapper>

@@ -257,5 +257,12 @@ public class StdService {
 	}
 
 
+	public int resetPassword(memberVO member) {
+		int result = repo.resetPassword(member);
+		
+		return result;
+	}
+
+
 	
 }
