@@ -64,7 +64,7 @@ public interface stdMapper {
 
 	public String selectPName(String productcode);
 
-	public tradeVO ticketChk(Map<String, String> map);
+	public List<tradeVO> ticketChk(Map<String, String> map);
 
 	public List<tradeVO> ticketChk2(Map<String, String> map);
 
