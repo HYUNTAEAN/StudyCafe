@@ -55,13 +55,14 @@ CREATE TABLE Cafe_ChargeInfo
 	product_code varchar2(30) not null references Cafe_ProductInfo(product_code),-- 상품 코드
 	charge_date date not null													-- 충전 일시
 );
+
 CREATE TABLE Cafe_UseInfo
 (
 	use_num number primary key,													-- 이용 번호
 	userid varchar2(30) not null references Cafe_Member(userid),				-- 사용자 아이디
 	start_time date default sysdate not null,									-- 입실 시각
 	end_time date not null,														-- 퇴실 예정 시각
-	seat_num number not null references Cafe_SeatInfo(seat_num)				-- 좌석 번호
+	seat_num number not null references Cafe_SeatInfo(seat_num)				    -- 좌석 번호
 );
 
 CREATE SEQUENCE trade_num_seq;	-- 거래 번호 시퀀스
@@ -79,10 +80,16 @@ DROP SEQUENCE trade_num_seq;
 DROP SEQUENCE use_num_seq;
 DROP SEQUENCE charge_num_seq;
 
+
 rollback;
 commit;
+
 delete from Cafe_ProductInfo;
 delete from Cafe_TradeInfo;
+
+select * from Cafe_ProductInfo;
+select * from Cafe_ProductInfo;
+
 insert into
     Cafe_ProductInfo(
         product_code
@@ -92,7 +99,7 @@ insert into
         ,product_name
     )values(
         'A001'
-        ,2
+        ,120
         ,3500
         ,1
         ,'2hours Ticket'
@@ -106,7 +113,7 @@ insert into
         ,product_name
     )values(
         'A002'
-        ,3
+        ,180
         ,5000
         ,1
         ,'3hours Ticket'
@@ -120,7 +127,7 @@ insert into
         ,product_name
     )values(
         'A003'
-        ,4
+        ,240
         ,6000
         ,1
         ,'4hours Ticket'
@@ -134,7 +141,7 @@ insert into
         ,product_name
     )values(
         'A004'
-        ,6
+        ,360
         ,8000
         ,1
         ,'6hours Ticket'
@@ -148,7 +155,7 @@ insert into
         ,product_name
     )values(
         'A005'
-        ,8
+        ,480
         ,9500
         ,1
         ,'8hours Ticket'
@@ -162,7 +169,7 @@ insert into
         ,product_name
     )values(
         'A006'
-        ,10
+        ,600
         ,11000
         ,1
         ,'10hours Ticket'
@@ -176,7 +183,7 @@ insert into
         ,product_name
     )values(
         'A007'
-        ,12
+        ,720
         ,12000
         ,1
         ,'12hours Ticket'
@@ -190,7 +197,7 @@ insert into
         ,product_name
     )values(
         'A008'
-        ,15
+        ,900
         ,14000
         ,1
         ,'15hours Ticket'
@@ -204,7 +211,7 @@ insert into
         ,product_name
     )values(
         'A009'
-        ,24
+        ,1440
         ,20000
         ,1
         ,'24hours Ticket'
@@ -218,10 +225,10 @@ insert into
         ,product_name
     )values(
         'B001'
-        ,30
+        ,1800
         ,49000
         ,30
-        ,'30hours Packege'
+        ,'30hours Package'
     );
 insert into
     Cafe_ProductInfo(
@@ -232,7 +239,7 @@ insert into
         ,product_name
     )values(
         'B002'
-        ,50
+        ,3000
         ,70000
         ,50
         ,'50hours Packege'
@@ -246,7 +253,7 @@ insert into
         ,product_name
     )values(
         'B003'
-        ,100
+        ,6000
         ,130000
         ,100
         ,'100hours Packege'
