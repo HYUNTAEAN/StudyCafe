@@ -133,7 +133,7 @@ FROM
 WHERE
 	userid = #{userid} AND
 	product_code LIKE #{productType} || '%' AND
-	lave_expiry > SYSDATE
+	lave_expiry <![CDATA[>]]> SYSDATE
 </select>
 
 <select id="selectTradeOne" parameterType="int" resultType="trade">
@@ -148,7 +148,8 @@ SELECT
 FROM
 	Cafe_TradeInfo
 WHERE
-	trade_num = #{tradenum}
+	trade_num = #{tradenum} AND
+	lave_expiry <![CDATA[>]]> SYSDATE
 </select>
 
 <insert id="insertCharge" parameterType="charge">
@@ -184,7 +185,8 @@ FROM
 	Cafe_TradeInfo
 WHERE
 	userid = #{userid} AND
-	product_code = #{productcode}
+	product_code = #{productcode} AND
+	lave_expiry <![CDATA[>]]> SYSDATE
 </select>
 
 <update id="updateTrade" parameterType="upCharge">
@@ -209,7 +211,8 @@ FROM
 	Cafe_ChargeInfo
 WHERE
 	userid = #{userid} AND
-	product_code LIKE #{productType} || '%'
+	product_code LIKE #{productType} || '%' AND
+	lave_expiry <![CDATA[>]]> SYSDATE
 ORDER BY
 	charge_date ASC
 </select>
@@ -260,7 +263,8 @@ FROM
 	Cafe_ChargeInfo
 WHERE
 	userid = #{userid} AND
-	product_code LIKE #{productType} || '%'
+	product_code LIKE #{productType} || '%' AND
+	lave_expiry <![CDATA[>]]> SYSDATE
 </select>
 
 <delete id="deleteUse" parameterType="String">
@@ -324,7 +328,8 @@ FROM
 	Cafe_TradeInfo
 WHERE
 	userid = #{userid} AND 
-	product_code LIKE 'B' || '%'
+	product_code LIKE 'B' || '%' AND
+	lave_expiry <![CDATA[>]]> SYSDATE
 </select>
 
 <select id="ticketChk2" parameterType="map" resultType="trade">
@@ -340,11 +345,8 @@ FROM
 	Cafe_TradeInfo
 WHERE
 	userid = #{userid} AND 
-	product_code LIKE 'A' || '%'
+	product_code LIKE 'A' || '%' AND
+	lave_expiry <![CDATA[>]]> SYSDATE
 </select>
 
-<select id="selectChargeAll" parameterType="String" resultType="charge">
-SELECT
-	
-</select>
 </mapper>

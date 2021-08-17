@@ -84,11 +84,11 @@ p {
 				</tr>
 				<tr>
 					<td class="division">Day Package</td>
-					<td class="time"><c:if test="${chargeC != null}">${cName}</c:if><c:if test="${chargeC ==null}">구매한 상품이 없습니다</c:if></td>
+					<c:if test="${chargeC != null}"><td class="time">${cName}</td></c:if><c:if test="${chargeC ==null}"><td class="time">구매한 상품이 없습니다</td></c:if>
 				</tr>
 				<tr>
 					<td class="division">Time Package</td>
-					<td class="time"><c:if test="${chargeB != null}">${bName}</c:if><c:if test="${chargeB ==null} ==null">구매한 상품이 없습니다</c:if></td>
+					<c:if test="${chargeB != null}"><td class="time">${bName}</td></c:if><c:if test="${chargeB ==null}"><td class="time">구매한 상품이 없습니다</td></c:if>
 				</tr>
 				<tr>
 					<td class="check" colspan="2">Check remaining time/days</td>
