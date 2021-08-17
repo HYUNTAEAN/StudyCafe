@@ -1,5 +1,5 @@
 # StudyCafe - Spring - MVC
-StudyCafe Kiosk Program
+StudyCafe Kiosk Program (https://github.com/ANHENTAI/StudyCafe)
 
 # Service
 - 로그인, 로그아웃, 회원가입 기능
