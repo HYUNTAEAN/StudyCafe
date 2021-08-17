@@ -20,7 +20,7 @@ function seatChk(seat){
 		, data : seatnum
 		, success : function(resp){
 			if(resp == "FAIL"){
-				alert("이용중인 좌석입니다");
+				alert("Please check the Other Seat");
 				return;
 			}
 		}
@@ -33,10 +33,16 @@ function seatChk(seat){
 
 function inuse(){
 	let seatnum = $("#numSeat").val();
+	
+	if(seatnum == ""){
+		alert("please check your seat");
+		return;
+	}
+	
 	let proType = $("#proType").val();
 	
 	if(proType == 'D'){
-		alert("좌석을 " + seatnum + " 번 좌석으로 변경합니다.");
+		alert("Seat Changed : " + seatnum);
 		location.href="useChange?seatnum=" + seatnum + "&proType=" + proType;
 	} else {
 		location.href="inuse?seatnum=" + seatnum + "&proType=" + proType;
