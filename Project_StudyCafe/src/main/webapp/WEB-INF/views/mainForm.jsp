@@ -17,11 +17,11 @@ function loginChk(){
 	let userpwd = $("#userpwd").val();
 	
 	if(userid.trim().length < 1){
-		alert("아이디 길이 오류");
+		alert("Please enter ID.");
 		return;
 	}
 	if(userpwd.trim().length < 1){
-		alert("비밀번호 길이 오류");
+		alert("Please enter password.");
 		return;
 	}
 	
@@ -48,11 +48,11 @@ function use(type){
 		, data : myData
 		, success : function(resp){
 			if(resp == "NoCharged"){
-				alert("충전 정보 없음");
+				alert("There is no product you charged.");
 				return;
 			}
 			if(resp == "Used"){
-				alert("입실 정보 존재");
+				alert("You are already using studycafe.");
 				return;
 			}
 			if(resp == "SUCCESS"){
@@ -70,7 +70,7 @@ function seatChange(){
 		, method : 'GET'
 		,success : function(resp){
 			if(resp == "FAIL"){
-				alert("입실 정보가 없습니다");
+				alert("There is no information you entered into studycafe.");
 				location.href="/std/";
 			} else {
 				location.href="use?productType=D";

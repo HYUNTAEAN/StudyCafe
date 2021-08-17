@@ -23,7 +23,7 @@ $(function(){
 		, data : myData
 		, success : function(resp){
 			if(resp == "FAIL"){
-				alert("이미 충전한 상품 존재");
+				alert("You already charged a different kind of products.");
 				location.href="/std/";
 			}
 		}
@@ -112,7 +112,7 @@ function hourCharge(param){
 	let cod = $('#cod').val();
 
 	if(cod == ""){
-		alert("상품을 선택해");
+		alert("Please choose one.");
 		return; 
 	}
 	
@@ -140,7 +140,7 @@ function chargeTime(){
 	let lvtimeone = $('#lvtimeone').val();
 	
 	if(cod == '' && typeChk == 'C'){
-		alert("상품을 선택해");
+		alert("Please choose one.");
 		return;
 	}
 	let chargetime = '';
@@ -155,13 +155,13 @@ function chargeTime(){
 	}
 	
 	if(chargetime == ''){
-		alert("충전시간을 선택해");
+		alert("Please choose how many hours you want to charge.");
 		return;
 	}
 	
 	
 	if(parseInt(lvtimeone) < parseInt(chargetime)){
-		alert("충전 시간 부족");
+		alert("You need to charge more hours.");
 		return;
 	}
 	
@@ -265,7 +265,7 @@ a {
 				</tr>
 				<tr class="pretd">
 				<!-- 선택한 패키지의 남아있는 시간 -->
-					<td class="division">Time package remaining time<input type="hidden" id="lvtime" value="${lavetime}"><input type="hidden" id="lvtimeone" value=""></td>
+					<td class="division">Remaining time of Time package<input type="hidden" id="lvtime" value="${lavetime}"><input type="hidden" id="lvtimeone" value=""></td>
 					<td class="time" id="firstlv">${lavetime} hours</td>
 				</tr>
 				<tr class="pretd">

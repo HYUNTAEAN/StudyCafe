@@ -31,7 +31,7 @@ $(function(){
 		,data : myData
 		, success : function(resp){
 			if(resp == "FAIL"){
-				alert("구매한 패키지 내역이 존재합니다.");
+				alert("There is a list of products you charged.");
 				location.href = "/std/";
 			}
 		}
@@ -91,7 +91,7 @@ function payment(){
 	let cod = $('#cod').val();
 	
 	if(chargetime == '0'){
-		alert("상품을 선택해");
+		alert("Please choose a product.");
 		return;
 	}
 	let type = $("#typechk").val();
@@ -190,7 +190,7 @@ a {
 					<td class="time" style="background-color: #ededed;">Time</td>
 				</tr>
 				<tr class="pretd">
-					<td class="division">Time package remaining time<input type="hidden" id="lvtime" value="${lavetime}"></td>
+					<td class="division">Remaining time of Time package<input type="hidden" id="lvtime" value="${lavetime}"></td>
 					<td class="time" id="firstlv">${lavetime} hours</td>
 					
 				</tr>
