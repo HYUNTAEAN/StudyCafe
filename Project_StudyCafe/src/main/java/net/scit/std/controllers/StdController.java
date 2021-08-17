@@ -58,14 +58,13 @@ public class StdController {
 	
 	@RequestMapping("/join")
 	public String join(String cod, Model model){
-		System.out.println(cod);
 		model.addAttribute("key", cod);
 		return "joinForm";
 	}
 	
 	@RequestMapping(value="/joinChk", method=RequestMethod.POST)
 	public @ResponseBody String joinChk(String userid){
-		System.out.println("sdfsdf");
+
 		memberVO member = service.joinChk(userid);
 		
 		if(member == null){
@@ -88,7 +87,6 @@ public class StdController {
 		int result = service.join(member);
 		
 		if(result == 1){
-			System.out.println(result);
 			return "redirect:/";
 		}
 		return "joinForm";
@@ -257,7 +255,6 @@ public class StdController {
 		if("B".equals(productType)){
 			for(tradeVO t : list){
 				int lv = t.getLavetime();
-				System.out.println(lv);
 				lv /= 60;
 				t.setLavetime(lv);
 			}
@@ -469,7 +466,6 @@ public class StdController {
 		if(charge != null){
 		chargetime = charge.getChargetime();
 		chargetime += paybackMin;
-		System.out.println(chargetime);
 		upChargeVO payback = new upChargeVO(0, userid, chargetime, null);
 		
 		int result = service.deleteUse(userid);
@@ -503,7 +499,6 @@ public class StdController {
 		int result = service.updateUse(use);
 		
 		if(result == 1){
-			System.out.println("변경 성공");
 			return "redirect:/";
 		}
 		return "redirect:/";
@@ -552,8 +547,6 @@ public class StdController {
 		if(chargeA.size() > 0){
 			aTime = chargeA.get(0).getChargetime()/60; 
 		}
-		System.out.println(chargeC);
-		System.out.println(chargeB);
 		model.addAttribute("chargeC", chargeC);
 		model.addAttribute("chargeB", chargeB);
 		model.addAttribute("chargeA", chargeA);
@@ -575,7 +568,6 @@ public class StdController {
 		map.put("userid", userid);
 		map.put("productType", type);
 		
-		System.out.println(type);
 		if("A".equals(type)){
 		tradeVO trade = service.ticketChk(map);
 			if(trade != null){
