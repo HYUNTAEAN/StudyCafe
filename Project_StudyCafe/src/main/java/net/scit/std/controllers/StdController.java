@@ -47,7 +47,7 @@ public class StdController {
 		}
 		session.setAttribute("loginId", userid);
 			
-		return "Wassup";
+		return "Welcome to your Visit";
 	}
 	
 	@RequestMapping("/logout")
@@ -547,6 +547,17 @@ public class StdController {
 		if(chargeA.size() > 0){
 			aTime = chargeA.get(0).getChargetime()/60; 
 		}
+		
+		
+		useVO use = service.selectUse(userid);
+		
+		int seatnum = 0;
+		
+		if(use != null){
+			seatnum += use.getSeatnum();
+		}
+		
+		model.addAttribute("seatnum", seatnum);
 		model.addAttribute("chargeC", chargeC);
 		model.addAttribute("chargeB", chargeB);
 		model.addAttribute("chargeA", chargeA);

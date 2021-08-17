@@ -29,6 +29,20 @@ function resetMember(){
 		return;
 	}
 	
+	let joinData = {"userid" : userid};
+	
+	$.ajax({
+		url : 'joinChk'
+		, method : 'POST'
+		, data : joinData
+		, success : function(resp){
+			if(resp == "SUCCESS"){
+				alert("아이디가 존재하지 않아요");
+			$("#userid").focus();
+			}
+		}
+	});
+	
 	location.href="resetPassword?userid="+userid+"&userpwd="+userpwd;
 	
 }

@@ -243,11 +243,10 @@ $(function () {
 		</tr>
 		<tr>
 			<td colspan="2">
-			<img src="resources/images/pic1.jpg"></td>
+			<img src="https://user-images.githubusercontent.com/88410343/129731418-ab7e853d-50b9-49c1-9692-8469eae19892.jpg"></td>
 		</tr>
 		<tr>
-			<td colspan="2"> 
-			<a href="#">Check available seats</a></td>
+			<td colspan="2" class="checkSeat">Check available seats : ${availSeat}</td>
 		</tr>
 		<c:if test="${sessionScope.loginId == null}">
 		<tr>
@@ -272,14 +271,14 @@ $(function () {
 <div>
 			<table width="500" class="tableA" id="table1">
 				<tr>
-					<td id="posttd"><b>STUDYCAFE</b></td>
-					<td id="posttd"><b>SCIT41 Branch</b></td>
+					<td><b>STUDYCAFE</b></td>
+					<td><b>SCIT41 Branch</b></td>
 				</tr>
 				<tr>
-					<td colspan="2"><img src="resources/images/pic1.jpg"></td>
+					<td colspan="2"><img src="https://user-images.githubusercontent.com/88410343/129731418-ab7e853d-50b9-49c1-9692-8469eae19892.jpg"></td>
 				</tr>
 				<tr>
-					<td colspan="2" id="posttd"><a href="#">Check available seats</a></td>
+					<td colspan="2" class="checkSeat">Check available seats : ${availSeat}</td>
 				</tr>
 			</table>
 			<table width="500" class="tableA" id="table2">

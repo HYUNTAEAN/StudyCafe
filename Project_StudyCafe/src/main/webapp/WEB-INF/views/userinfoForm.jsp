@@ -95,24 +95,29 @@ p {
 				</tr>
 				<tr>
 					<td class="division">Charged days</td>
-					<td class="time"><c:if test="${cTime > 1}">${cTime}</c:if><c:if test="${cTime < 1}">0</c:if> days</td>
+					<c:if test="${cTime != 0}"><td class="time">${cTime}</td></c:if><c:if test="${cTime == 0}"><td class="time">0 days</td></c:if>
+				</tr>
+				<tr>
+					<td class="division">Charged time to Package</td>
+					<c:if test="${bTime != 0}"><td class="time">${bTime} hours</td></c:if><c:if test="${bTime == 0}"><td class="time">0 days</td></c:if>
 				</tr>
 				<tr>
 					<td class="division">Charged time</td>
-					<c:if test="${bTime > 1}">
-						<td class="time">${bTime} hours</td>
-					</c:if>
-					<c:if test="${aTime > 1}">
-						<td class="time">${aTime} hours</td>
-					</c:if>
+					<c:if test="${aTime != 0}"><td class="time">${aTime} hours</td></c:if><c:if test="${aTime == 0}"><td class="time">0 days</td></c:if>
 				</tr>
 				
-				<c:if test="${list.size() < 1}">
 				<tr>
-					<td class="division">Service</td>
-					<td class="time">There are no services in use.</td>
+					<td class="check" colspan="2">Use Info</td>
 				</tr>
-				</c:if>
+				<tr>
+					<td class="division">Seat Number</td>
+					<c:if test="${seatnum != 0}">
+					<td class="time">${seatnum}</td>
+					</c:if>
+					<c:if test="${seatnum == 0}">
+					<td class="time">There are no services in use.</td>
+					</c:if>
+				</tr>
 			</table>
 		</div>
 		</div>

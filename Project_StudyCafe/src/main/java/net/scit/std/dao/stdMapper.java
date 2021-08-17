@@ -70,4 +70,8 @@ public interface stdMapper {
 
 	public int resetPassword(memberVO member);
 
+	public laveVO availSeat();
+
+	public laveVO unavailSeat();
+
 }

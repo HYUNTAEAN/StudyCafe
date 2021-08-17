@@ -264,5 +264,19 @@ public class StdService {
 	}
 
 
+	public laveVO availSeat() {
+		laveVO availSeat = repo.availSeat();
+		
+		return availSeat;
+	}
+
+
+	public laveVO unavailSeat() {
+		laveVO unavailSeat = repo.unavailSeat();
+		
+		return unavailSeat;
+	}
+
+
 	
 }
