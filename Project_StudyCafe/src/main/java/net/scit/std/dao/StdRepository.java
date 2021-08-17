@@ -248,10 +248,10 @@ public class StdRepository {
 	}
 
 
-	public tradeVO ticketChk(Map<String, String> map) {
+	public List<tradeVO> ticketChk(Map<String, String> map) {
 		stdMapper mapper = session.getMapper(stdMapper.class);
 		
-		tradeVO product = mapper.ticketChk(map);
+		List<tradeVO> product = mapper.ticketChk(map);
 		
 		return product;
 	}

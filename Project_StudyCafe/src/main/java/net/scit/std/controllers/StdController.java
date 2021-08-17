@@ -569,8 +569,8 @@ public class StdController {
 		map.put("productType", type);
 		
 		if("A".equals(type)){
-		tradeVO trade = service.ticketChk(map);
-			if(trade != null){
+		List<tradeVO> trade = service.ticketChk(map);
+			if(trade.size() > 1){
 				return "FAIL";
 			}
 		}

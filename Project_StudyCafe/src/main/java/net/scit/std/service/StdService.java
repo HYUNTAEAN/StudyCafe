@@ -243,8 +243,8 @@ public class StdService {
 	}
 
 
-	public tradeVO ticketChk(Map<String, String> map) {
-		tradeVO product = repo.ticketChk(map);
+	public List<tradeVO> ticketChk(Map<String, String> map) {
+		List<tradeVO> product = repo.ticketChk(map);
 		
 		return product;
 	}
