@@ -90,8 +90,675 @@ delete from Cafe_ProductInfo;
 delete from Cafe_TradeInfo;
 
 select * from Cafe_ProductInfo;
-select * from Cafe_ProductInfo;
+select * from Cafe_SeatInfo;
 
+--좌석 데이터
+insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section1'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section2'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section3'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section4'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section4'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section4'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section4'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section4'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section4'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section4'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section4'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section5'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section5'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section5'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section5'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section5'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section5'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section6'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section6'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section6'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section6'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section6'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section6'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section6'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+     insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section7'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    insert into 
+    Cafe_SeatInfo(
+        seat_num
+        , section_num
+    )values(
+        seat_num_seq.nextval
+        , 'section8'
+    );
+    
+-- 상품 데이터  
 insert into
     Cafe_ProductInfo(
         product_code

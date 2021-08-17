@@ -18,13 +18,13 @@ function resetMember(){
 	let pwdcheck = $("#pwdcheck").val();
 	
 	if(userpwd != pwdcheck){
-		alert("비밀번호 불일치");
+		alert("Password and Re-enter password are not correct. Please check that.");
 		$("#pwdcheck").focus();
 		return;
 	}
 	
 	if(userid.trim().length < 10 || userid.trim().length > 11){
-		alert("아이디 길이 오류");
+		alert("Please enter your Phone Number(without '-').");
 		$("#userid").focus();
 		return;
 	}
@@ -39,19 +39,19 @@ function joinMember(){
 	let pwdcheck = $("#pwdcheck").val();
 	
 	if(userpwd != pwdcheck){
-		alert("비밀번호 불일치");
+		alert("Please check your password. That's not correct.");
 		$("#pwdcheck").focus();
 		return;
 	}
 	
 	if(userid.trim().length < 10 || userid.trim().length > 11){
-		alert("아이디 길이 오류");
+		alert("Please enter your Phone Number(without '-').");
 		$("#userid").focus();
 		return;
 	}
 	
 	if(userpwd.trim().length < 1 || userpwd.trim().length > 10){
-		alert("비밀번호 길이 오류");
+		alert("Only 1 to 10 digits of password are allowed.");
 		$("#userpwd").focus();
 	}
 		
@@ -65,7 +65,7 @@ function joinMember(){
 			if(resp == "SUCCESS"){
 				$("#myFrm").submit();
 			} else {
-			alert("아이디 중복");
+			alert("Someone is already using the same ID. Please enter other ID.");
 			$("#userid").focus();
 			}
 		}

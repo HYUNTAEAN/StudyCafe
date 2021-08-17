@@ -83,12 +83,12 @@ p {
 					<td class="check" colspan="2">Services in use</td>
 				</tr>
 				<tr>
-					<td class="division">Day Package</td>
-					<c:if test="${chargeC != '[]'}"><td class="time">${cName}</td></c:if><c:if test="${chargeC == '[]'}"><td class="time">구매한 상품이 없습니다</td></c:if>
+					<td class="division">Free Pass</td>
+					<c:if test="${chargeC != '[]'}"><td class="time">${cName}</td></c:if><c:if test="${chargeC == '[]'}"><td class="time">There is no products you charged.</td></c:if>
 				</tr>
 				<tr>
 					<td class="division">Time Package</td>
-					<c:if test="${chargeB != '[]'}"><td class="time">${bName}</td></c:if><c:if test="${chargeB == '[]'}"><td class="time">구매한 상품이 없습니다</td></c:if>
+					<c:if test="${chargeB != '[]'}"><td class="time">${bName}</td></c:if><c:if test="${chargeB == '[]'}"><td class="time">There is no products you charged.</td></c:if>
 				</tr>
 				<tr>
 					<td class="check" colspan="2">Check remaining time/days</td>

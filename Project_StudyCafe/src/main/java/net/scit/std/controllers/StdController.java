@@ -220,7 +220,7 @@ public class StdController {
 				
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
-					out.println("<script>alert('충전 정보가 존재합니다'); location.href='/std/'; </script>");
+					out.println("<script>alert('You already charged.'); location.href='/std/'; </script>");
 					out.flush();
 			}
 			
