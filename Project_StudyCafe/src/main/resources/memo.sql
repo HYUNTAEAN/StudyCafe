@@ -242,7 +242,7 @@ insert into
         ,3000
         ,70000
         ,50
-        ,'50hours Packege'
+        ,'50hours Package'
     );
 insert into
     Cafe_ProductInfo(
@@ -256,7 +256,7 @@ insert into
         ,6000
         ,130000
         ,100
-        ,'100hours Packege'
+        ,'100hours Package'
     );
 insert into
     Cafe_ProductInfo(
