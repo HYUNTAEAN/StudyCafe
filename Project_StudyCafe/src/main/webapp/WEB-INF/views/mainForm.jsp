@@ -78,6 +78,50 @@ function seatChange(){
 		}
 	});
 }
+$(function () {
+	$(".choose").on("mouseover", function () {
+		$(this).css("background-color", "#112d5d");
+	});
+	$(".choose").on("mouseout", function () {
+		$(this).css("background-color", "#0F3878");
+	});
+	$(".choose").on("mousedown", function () {
+		$(this).css("background-color", "rgba(17, 45, 93, 0.9)");
+	});
+});
+$(function () {
+	$(".change").on("mouseover", function () {
+		$(this).css("background-color", "#1f5835");
+	});
+	$(".change").on("mouseout", function () {
+		$(this).css("background-color", "#24703f");
+	});
+	$(".change").on("mousedown", function () {
+		$(this).css("background-color", "rgba(36, 112, 63, 0.9)");
+	});
+});
+$(function () {
+	$("#leaveBtn").on("mouseover", function () {
+		$(this).css("background-color", "#62C15B");
+	});
+	$("#leaveBtn").on("mouseout", function () {
+		$(this).css("background-color", "rgba(104, 204, 116, 1)");
+	});
+	$("#leaveBtn").on("mousedown", function () {
+		$(this).css("background-color", "rgba(104, 204, 116, 0.8)");
+	});
+});
+$(function () {
+	$("#logoutBtn").on("mouseover", function () {
+		$(this).css("background-color", "#163561");
+	});
+	$("#logoutBtn").on("mouseout", function () {
+		$(this).css("background-color", "#213d62");
+	});
+	$("#logoutBtn").on("mousedown", function () {
+		$(this).css("background-color", "rgba(22, 53, 97, 0.2)");
+	});
+});
 </script>
 
 <style>
@@ -148,22 +192,43 @@ function seatChange(){
 	}
 	#logoutBtn {
 		padding: 0;
+		padding: 14px 95px;
 		color: white;
 	}
 	.firsttd{
-		background-color: #1E6EC7;
+		background-color: #0a51ad;
 		width: 120px;
 	}
 	.lasttd{
-		background-color: #228B22;
+		background-color: #2d7d4a;
 	}
 	.change{
-		background-color: #008000;
+		background-color: #24703f;
 	}
 	.choose{
-		background-color: #00008B;
+		background-color: #0F3878;
 	}
-	
+.purchaseBtn {
+	 padding: 13px 6px;
+}
+#FreepassBtn {
+	padding: 13px 20px;
+}
+.tempBtn {
+	padding: 13px 18px;
+}
+#chargeTimeBtn {
+	padding: 13px 4px;
+}
+#UFBtn {
+	padding: 13px 30px;
+}
+#leaveBtn {
+	padding: 14px 62px;
+}
+.tempbtn2 {
+	padding: 13px 25px;
+}
 </style>
 </head>
 <body>
@@ -227,25 +292,25 @@ function seatChange(){
 			<div class="context">
 			<table width="460" class="tableA" id="table3">
 				<tr>
-					<td class="firsttd" id="posttd">Purchase of products</td>
-					<td class="choose" colspan="2" id="posttd"><a href="purchase?productType=A">Single Ticket</a></td>
-					<td class="choose" colspan="2" id="posttd"><a href="purchase?productType=B">TimePackage</a></td>
-					<td class="choose" colspan="2" id="posttd"><a href="purchase?productType=C">기간권</a></td>
+					<td class="firsttd">Purchase of products</td>
+					<td class="choose" colspan="2"><a href="purchase?productType=A" class="purchaseBtn">Single Ticket</a></td>
+					<td class="choose" colspan="2"><a href="purchase?productType=B" class="purchaseBtn">TimePackage</a></td>
+					<td class="choose" colspan="2"><a href="purchase?productType=C" class="purchaseBtn" id="FreepassBtn">Free Pass</a></td>
 				</tr>
 				<tr>
-					<td class="firsttd" id="posttd">Use 정액권</td>
-					<td class="choose" colspan="3" id="posttd"><a href="javascript:use('B')">Choose seat as TimePackage</a></td>
-					<td class="choose" colspan="3" id="posttd"><a href="javascript:use('C')">Choose seat as 기간권</a></td>
+					<td class="firsttd">Charge Pass</td>
+					<td class="choose" colspan="3"><a href="charge?productType=B" id="chargeTimeBtn">Charge TimePackage</a></td>
+					<td class="choose" colspan="3"><a href="charge?productType=C" class="tempBtn">Charge Free Pass</a></td>
 				</tr>
 				<tr>
-					<td class="firsttd" id="posttd">Charge 정액권</td>
-					<td class="choose" colspan="3" id="posttd"><a href="charge?productType=B">Charge TimePackage</a></td>
-					<td class="choose" colspan="3" id="posttd"><a href="charge?productType=C">Charge 기간권</a></td>
+					<td class="firsttd" id="posttd">Choose seat</td>
+					<td class="choose" colspan="3" id="posttd"><a href="javascript:use('B')" class="tempBtn">Use TimePackage</a></td>
+					<td class="choose" colspan="3" id="posttd"><a href="javascript:use('C')" id="UFBtn">Use Free Pass</a></td>
 				</tr>
 				<tr>
 					<td class="lasttd" id="posttd">Additional Function</td>
-					<td class="change" colspan="3" id="posttd"><a href="userInfo">Check User Information</a></td>
-					<td class="change" colspan="3" id="posttd"><a href="javascript:seatChange();">Change Seat</a></td>
+					<td class="change" colspan="3" id="posttd"><a href="userInfo" class="tempbtn2">Check UserInfo</a></td>
+					<td class="change" colspan="3" id="posttd"><a href="javascript:seatChange();" class="tempbtn2">Change Seat</a></td>
 				</tr>
 			</table>
 		</div>
