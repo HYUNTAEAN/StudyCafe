@@ -27,6 +27,9 @@ function seatChk(seat){
 	});
 	
 	// input css
+	$(".seatbtn").css("background-color","white").css("color", "#1E6EC7");
+	$('#'+seat).css("background-color","#1E6EC7").css("color", "white");
+	$('#'+seat).off("mouseout").off("mouseover");
 	let proType = $("#proType").val();
 	$("#numSeat").val(seat);
 }
@@ -42,6 +45,18 @@ function inuse(){
 		location.href="inuse?seatnum=" + seatnum + "&proType=" + proType;
 	}
 };
+
+$(function () {
+	$(".seatbtn").on("mouseover", function () {
+		$(this).css("cursor", "pointer");
+		$(this).css("background-color", "#1E6EC7")
+		.css("color", "white");
+	});
+	$(".seatbtn").on("mouseout", function () {
+		$(this).css("background-color", "white")
+		.css("color", "#1E6EC7");
+	});
+});
 </script>
 <style>
 table{
@@ -178,48 +193,48 @@ a {
 		<div id="allSeat" style="height: 455px;">
 			<div id="section1" class="seatSection">
 			<c:forEach var="seat" items="${list}" begin="0" end="12" step="1">
-				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				<input type="button" value="${seat.seatnum}" id="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
 			</c:forEach>
 			</div>
 			<div id="section2" class="seatSection">
 			<c:forEach var="seat" items="${list}" begin="13" end="24" step="1">
-				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				<input type="button" value="${seat.seatnum}" id="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
 			
 			</c:forEach>
 			</div>
 			<div id="section3" class="seatSection">
 			<c:forEach var="seat" items="${list}" begin="25" end="36" step="1">
-				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				<input type="button" value="${seat.seatnum}" id="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
 			
 			</c:forEach>
 			</div>
 			<div id="section4" class="seatSection">
 			<c:forEach var="seat" items="${list}" begin="37" end="44" step="1">
-				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				<input type="button" value="${seat.seatnum}" id="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
 			
 			</c:forEach>
 			</div>
 			<div id="section5" class="seatSection">
 			<c:forEach var="seat" items="${list}" begin="45" end="50" step="1">
-				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				<input type="button" value="${seat.seatnum}" id="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
 				
 			</c:forEach>
 			</div>
 			<div id="section6" class="seatSection">
 			<c:forEach var="seat" items="${list}" begin="51" end="57" step="1">
-				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				<input type="button" value="${seat.seatnum}" id="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
 				
 			</c:forEach>
 			</div>
 			<div id="section7" class="seatSection">
 			<c:forEach var="seat" items="${list}" begin="58" end="69" step="1">
-				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				<input type="button" value="${seat.seatnum}" id="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
 
 			</c:forEach>
 			</div>
 			<div id="section8" class="seatSection">
 			<c:forEach var="seat" items="${list}" begin="70" end="82" step="1">
-				<input type="button" value="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
+				<input type="button" value="${seat.seatnum}" id="${seat.seatnum}" class="seatbtn" onclick="javascript:seatChk(${seat.seatnum})">
 
 			</c:forEach>
 			</div>
