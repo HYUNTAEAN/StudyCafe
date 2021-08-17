@@ -1,5 +1,7 @@
 package net.scit.std.controllers;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -8,12 +10,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -98,12 +100,6 @@ public class StdController {
 			result /= 60;
 		}
 		
-//		float time = result/60;
-//		String timeSt = String.valueOf(time);
-//		String sHour = timeSt.split(".")[0];
-//		String sMin = timeSt.split(".")[1];
-//		
-//		String timeText = sHour + "시간";
 				
 		model.addAttribute("productType", productType);
 		model.addAttribute("list", list);
@@ -178,7 +174,7 @@ public class StdController {
 	}
 	
 	@RequestMapping("/endPay")
-	public String endPay(String productcode, HttpSession session){
+	public String endPay(String productcode, Model model, HttpSession session, HttpServletResponse response) throws IOException{
 		
 		String userid = (String) session.getAttribute("loginId");
 		
@@ -187,7 +183,49 @@ public class StdController {
 		tradeVO trade = new tradeVO(0, userid, null, null, productcode, 0, null);
 		
 		int result = service.insertTrade(trade);
+		String type = productcode.substring(0,1);
 		
+		if("A".equals(type)){
+			productcode = trade.getProductcode();
+			productVO product = service.selectProductOne(productcode);
+			int expiry = product.getExpirytime();
+			int producttime = product.getProducttime();
+			
+			Calendar calendar = new GregorianCalendar(Locale.KOREA);
+			calendar.add(Calendar.DAY_OF_MONTH, expiry);
+			
+			SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd hh:mm");
+			String laveexpiry = fm.format(calendar.getTime());
+			
+			chargeVO charge = new chargeVO(0, userid, laveexpiry, producttime, productcode, null);
+			
+			useVO use = service.selectUse(userid);
+
+			Map<String, String> map = new HashMap<>();
+			
+			map.put("userid", userid);
+			map.put("productType", type);
+			
+			List<chargeVO> chargedList = service.selectChargeInfo(map);
+			
+			if(chargedList.size() > 0 || use != null){
+				
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('충전 정보가 존재합니다'); location.href='/std/'; </script>");
+					out.flush();
+			}
+			
+			int result2 = service.insertCharge(charge);
+			
+			List<seatVO> list = service.selectSeatList();
+
+			model.addAttribute("list", list);
+			model.addAttribute("productType", type);
+			
+			return "seatForm";
+			
+		}
 		return "redirect:/";
 	}
 	
@@ -231,9 +269,9 @@ public class StdController {
 		map.put("userid", userid);
 		map.put("productType", type);
 		
-		List<chargeVO> list = service.selectChargeInfo(map);
+		List<chargeVO> charge = service.selectChargeInfo(map);
 		
-		if(list.size() < 1){
+		if(charge.size() < 1){
 			return "SUCCESS";
 		}
 		
@@ -322,7 +360,6 @@ public class StdController {
 		
 		List<seatVO> list = service.selectSeatList();
 
-		System.out.println(list);
 		model.addAttribute("list", list);
 		model.addAttribute("productType", productType);
 		
@@ -447,4 +484,100 @@ public class StdController {
 		return "SUCCESS";
 	}
 	
+	@RequestMapping("/useChange")
+	public String useChange(int seatnum, String proType, HttpSession session){
+		String userid = (String) session.getAttribute("loginId"); 
+		useVO use = service.selectUse(userid);
+		
+		use.setSeatnum(seatnum);
+		
+		int result = service.updateUse(use);
+		
+		if(result == 1){
+			System.out.println("변경 성공");
+			return "redirect:/";
+		}
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/userInfo")
+	public String userInfo(Model model, HttpSession session){
+		String userid = (String) session.getAttribute("loginId");
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("userid", userid);
+		map.put("productType", "C");
+		
+		String cName = null;
+		String bName = null;
+		String aName = null;
+		
+		List<chargeVO> chargeC = service.selectChargeInfo(map);
+		if(chargeC.size() > 0){
+		cName = service.selectPName(chargeC.get(0).getProductcode());
+		}
+		map.put("productType", "B");
+		
+		List<chargeVO> chargeB = service.selectChargeInfo(map);
+		if(chargeB.size() > 0){
+			bName = service.selectPName(chargeB.get(0).getProductcode());
+			}
+		map.put("productType", "A");
+		
+		List<chargeVO> chargeA = service.selectChargeInfo(map);
+		if(chargeA.size() > 0){
+			aName = service.selectPName(chargeA.get(0).getProductcode());
+			}
+		
+		
+		int cTime = 0;
+		int bTime = 0;
+		int aTime = 0;
+		
+		if(chargeC.size() > 0){
+			cTime = chargeC.get(0).getChargetime();	
+		}
+		if(chargeB.size() > 0){
+			bTime = chargeB.get(0).getChargetime()/60;
+		}
+		if(chargeA.size() > 0){
+			aTime = chargeA.get(0).getChargetime()/60; 
+		}
+		model.addAttribute("chargeC", chargeC);
+		model.addAttribute("chargeB", chargeB);
+		model.addAttribute("chargeA", chargeA);
+		model.addAttribute("cTime", cTime);
+		model.addAttribute("bTime", bTime);
+		model.addAttribute("aTime", aTime);
+		model.addAttribute("cName", cName);
+		model.addAttribute("bName", bName);
+		model.addAttribute("aName", aName);
+		
+		return "userinfoForm";
+	}
+	
+	@RequestMapping("ticketChk")
+	public @ResponseBody String ticketChk(String type, HttpSession session){
+		String userid = (String) session.getAttribute("loginId");
+		Map <String, String> map = new HashMap<>();
+		
+		map.put("userid", userid);
+		map.put("productType", type);
+		
+		System.out.println(type);
+		if("A".equals(type)){
+		tradeVO trade = service.ticketChk(map);
+			if(trade != null){
+				return "FAIL";
+			}
+		}
+		if("B".equals(type)){
+			List<tradeVO> tradelist = service.ticketChk2(map);
+				if(tradelist.size() > 0){
+					return "FAIL";
+				}
+			}
+		
+		return "SUCCESS";
+	}
 }

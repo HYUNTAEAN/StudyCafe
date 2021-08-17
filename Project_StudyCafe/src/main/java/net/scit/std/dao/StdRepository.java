@@ -219,4 +219,49 @@ public class StdRepository {
 		
 		return result;
 	}
+
+
+	public int updateUse(useVO use) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		int result = mapper.updateUse(use);
+		
+		return result;
+	}
+
+
+	public List<chargeVO> selectChargeAll(String userid) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		List<chargeVO> charge = mapper.selectChargeAll(userid);
+		
+		return charge;
+	}
+
+
+	public String selectPName(String productcode) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		String productName = mapper.selectPName(productcode);
+		
+		return productName;
+	}
+
+
+	public tradeVO ticketChk(Map<String, String> map) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		tradeVO product = mapper.ticketChk(map);
+		
+		return product;
+	}
+
+
+	public List<tradeVO> ticketChk2(Map<String, String> map) {
+		stdMapper mapper = session.getMapper(stdMapper.class);
+		
+		List<tradeVO> tradelist = mapper.ticketChk2(map);
+		
+		return tradelist;
+	}
 }

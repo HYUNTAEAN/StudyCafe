@@ -210,6 +210,8 @@ FROM
 WHERE
 	userid = #{userid} AND
 	product_code LIKE #{productType} || '%'
+ORDER BY
+	charge_date ASC
 </select>
 
 <select id="selectSeatList" resultType="seat">
@@ -290,4 +292,59 @@ WHERE
 	userid = #{userid} AND
 	product_code LIKE 'B' || '%'
 </update>
+
+<update id="updateUse" parameterType="use">
+UPDATE
+	Cafe_UseInfo
+SET
+	seat_num = #{seatnum}
+WHERE
+	use_num = #{usenum}
+</update>
+
+<select id="selectPName" parameterType="String" resultType="String">
+SELECT
+	product_name as productname
+FROM
+	Cafe_ProductInfo
+WHERE
+	product_code = #{productname}
+</select>
+
+<select id="ticketChk" parameterType="map" resultType="trade">
+SELECT
+	trade_num as tradenum,
+	userid,
+	TO_CHAR(trade_time , 'YY-MM-DD HH24:MI') as tradetime,
+	TO_CHAR(lave_expiry , 'YY-MM-DD HH24:MI') as laveexpiry,
+	product_code as productcode,
+	lave_time as lavetime,
+	product_name as productname
+FROM
+	Cafe_TradeInfo
+WHERE
+	userid = #{userid} AND 
+	product_code LIKE 'B' || '%'
+</select>
+
+<select id="ticketChk2" parameterType="map" resultType="trade">
+SELECT
+	trade_num as tradenum,
+	userid,
+	TO_CHAR(trade_time , 'YY-MM-DD HH24:MI') as tradetime,
+	TO_CHAR(lave_expiry , 'YY-MM-DD HH24:MI') as laveexpiry,
+	product_code as productcode,
+	lave_time as lavetime,
+	product_name as productname
+FROM
+	Cafe_TradeInfo
+WHERE
+	userid = #{userid} AND 
+	product_code LIKE 'A' || '%'
+</select>
+
+<select id="selectChargeAll" parameterType="String" resultType="charge">
+SELECT
+	
+</select>
 </mapper>
