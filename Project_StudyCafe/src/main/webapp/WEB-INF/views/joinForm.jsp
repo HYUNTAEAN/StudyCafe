@@ -51,9 +51,29 @@ function joinMember(){
 		}
 	});
 };
+
+$(function () {
+	$("#reset1").on("click", function () {
+		$("#userid").val("").focus();
+	});
+});
+$(function () {
+	$("#reset2").on("click", function () {
+		$("#userpwd").val("").focus();
+	});
+});
+$(function () {
+	$("#reset3").on("click", function () {
+		$("#pwdcheck").val("").focus();
+	});
+});
 </script>
 
 <style>
+a {
+	text-decoration : none;
+	color: black;
+}
 table{
 	margin:auto; 
 	display: table;
@@ -70,9 +90,6 @@ td {
 	background-color: white;
 	border: #e3ddd1 solid 1px;
 	padding: 5px;
-}
-a {
-	text-decoration : none; 
 }
 input{
 	height: 30px;
@@ -104,13 +121,6 @@ input{
 	padding: 15px 200px;
 	color: white;
 }
-/*
-.button {background-color: #1E6EC7;} 
-.button1 {background-color: #0386F2; width: 73%;}
-.button2 {background-color: #68CC74; width: 73%;}
-#userid, #userpwd {
- 	padding: 5px;
-} */
 </style>
 </head>
 <body>
@@ -122,7 +132,7 @@ input{
 				<th>SCIT41 Branch</th>
 			</tr>
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="#" id="HomeBtn">Home</a></th>
+				<th style="height: 50px; background-color: #68CC74;"><a href="/std/" id="HomeBtn">Home</a></th>
 				<th style="background-color: #213d62;">Join</th>
 			</tr>
 		</table>
@@ -135,20 +145,19 @@ input{
 					<span id="required">*required fields</span><br>Phone Number</td>
 					<td class="info" width="45%">
 					<input type="text" id="userid" name="userid"></td>
-					<td class="reset" width="15%">
-					<a href="#" id="reset">reset</a></td>
+					<td class="reset" width="15%"><a href="#" id="reset1">reset</a></td>
 				</tr>
 				<tr>
 					<td class="division1">
 					<span id="required">*required fields</span><br>Password</td>
 					<td class="info"><input type="password" id="userpwd" name="userpwd"></td>
-					<td class="reset"><a href="#" id="reset">reset</a></td>
+					<td class="reset"><a href="#" id="reset2">reset</a></td>
 				</tr>
 				<tr>
 					<td class="division1">
 					<span id="required">*required fields</span><br>Re-enter password</td>
 					<td class="info"><input type="password" id="pwdcheck"></td>
-					<td class="reset"><a href="#" id="reset">reset</a></td>
+					<td class="reset"><a href="#" id="reset3">reset</a></td>
 				</tr>
 			</table>
 			</form>
