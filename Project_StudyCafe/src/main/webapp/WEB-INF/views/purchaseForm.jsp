@@ -25,8 +25,18 @@ $(function(){
 });
 
 function cal(resp){
-	$(".purclick").css("background-color","white");
-	$('#'+resp).css("background-color","red");
+	$(".purclick").css("color", "black");
+	$(".purclick").on("mouseover", function () {
+		$(this).css("background-color", "#1E6EC7")
+		.css("color", "white");
+	});
+	$(".purclick").on("mouseout", function () {
+		$(this).css("background-color", "white")
+		.css("color", "black");
+	});
+	$(".purclick").css("background-color", "white");
+	$('#'+resp).css("background-color","#213d62").css("color", "white");
+	$('#'+resp).off("mouseout").off("mouseover");
 	$('#cod').val(resp);
 	
 	let lvtime = $("#lvtime").val();
@@ -51,7 +61,7 @@ function cal(resp){
 			}
 		}
 	});
-
+	
 };
 
 function payment(){
@@ -73,6 +83,28 @@ function payment(){
 	let type = $("#typechk").val();
 	location.href='payment?lavetime='+lavetime+'&chargetime='+chargetime+'&plustime='+plustime+'&type='+type+'&expiry='+exp+'&price='+pri+'&cod='+cod;
 }
+$(function () {
+	$(".purclick").on("mouseover", function () {
+		$(this).css("cursor", "pointer");
+		$(this).css("background-color", "#1E6EC7")
+		.css("color", "white");
+	});
+	$(".purclick").on("mouseout", function () {
+		$(this).css("background-color", "white")
+		.css("color", "black");
+	});
+});
+$(function () {
+	$(".highlight").on("mouseover", function () {
+		$(this).css("background-color", "#62C15B");
+	});
+	$(".highlight").on("mouseout", function () {
+		$(this).css("background-color", "rgba(104, 204, 116, 1)");
+	});
+	$(".highlight").on("mousedown", function () {
+		$(this).css("background-color", "rgba(104, 204, 116, 0.8)");
+	});
+});
 </script>
 <style>
 .bgon{
@@ -123,15 +155,6 @@ a {
 .time {
 	text-align: right;
 }
-
-/*
-.button {background-color: #1E6EC7;} 
-.button1 {background-color: #0386F2; width: 73%;}
-.button2 {background-color: #68CC74; width: 73%;}
-
-#userid, #userpwd {
- 	padding: 5px;
-} */
 </style>
 </head>
 <body>
@@ -142,7 +165,7 @@ a {
 				<th>SCIT41 Branch</th>
 			</tr>
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="/std/" id="HomeBtn">Home</a></th>
+				<th class="highlight" style="height: 50px; background-color: #68CC74;"><a href="/std/" id="HomeBtn">Home</a></th>
 				<th style="background-color: #213d62;">Purchase of Products</th>
 			</tr>
 		</table>
@@ -185,7 +208,7 @@ a {
 		</div>
 		<table width="500">
 			<tr>
-				<th style="height: 50px; background-color: #68CC74;"><a href="javascript:payment();" id="PaymentBtn">Payment</a></th>
+				<th class="highlight" style="height: 50px; background-color: #68CC74;"><a href="javascript:payment();" id="PaymentBtn"><b>Payment</b></a></th>
 			</tr>
 		</table>
 	</div>
